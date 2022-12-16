@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    transform: rotate(300deg);
+}
+
+td {
+    width: 5vh;
+    height: 5vh;
+    border: 1px solid black;
+}
