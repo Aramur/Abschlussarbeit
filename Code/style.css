@@ -3,13 +3,24 @@ body {
     margin: 0;
 }
 
-table {
-    border-collapse: collapse;
-    transform: rotate(300deg);
+.wrapper {
+    width: 320px;
+    height: 180px;
+    position: relative;
+    border: 1px solid #aaa;
+    background-color: #eee;
 }
 
-td {
-    width: 5vh;
-    height: 5vh;
-    border: 1px solid black;
+.point {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: #555;
+}
+
+.line {
+    position: absolute;
+    height: 2px;
+    background-color: #d63030;
+    transform-origin: left;
 }
