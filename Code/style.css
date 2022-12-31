@@ -1,26 +1,8 @@
-body {
-    height: 100vh;
-    margin: 0;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-.wrapper {
-    width: 320px;
-    height: 180px;
-    position: relative;
-    border: 1px solid #aaa;
-    background-color: #eee;
-}
-
-.point {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    background-color: #555;
-}
-
-.line {
-    position: absolute;
-    height: 2px;
-    background-color: #d63030;
-    transform-origin: left;
+canvas {
+  display: block;
 }
