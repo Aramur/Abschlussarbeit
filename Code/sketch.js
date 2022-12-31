@@ -4,6 +4,7 @@ var y1;
 var x2;
 var y2;
 var squares = [];
+var color2 = '#2a3033';
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,6 +16,7 @@ function setup() {
     y1: 0,
     x2: 0,
     y2: windowHeight / 2,
+    color: color2,
     delete: false
   })
 }
@@ -43,24 +45,29 @@ function spawn() {
     }
 
     idCounter += 1;
+    if (y1 <= y2) {
+      color2 = '#2a3033';
+    }
+    else {
+      color2 = '#6a7175';
+    }
     squares.push({
       id: idCounter,
       x1: x1,
       y1: y1,
       x2: x2,
       y2: y2,
+      color: color2,
       delete: false
     })
   }
-
-  console.log(x1, y1, x2, y2)
 }
 
 function draw() {
   background(220);
   spawn();
   for (var i = 0; i < idCounter; i++) {
-    fill('red');
+    fill(squares[i].color);
     beginShape(TESS);
     vertex(squares[i].x1, squares[i].y1)
     vertex(squares[i].x2, squares[i].y2)
