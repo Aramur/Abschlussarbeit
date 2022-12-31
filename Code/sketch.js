@@ -27,24 +27,21 @@ function spawn() {
   if (squares[idCounter].y2 < windowHeight + 100) {
     x1 = squares[idCounter].x2;
     y1 = squares[idCounter].y2;
-    x2 = x1 + getRandomInt(25, 100);
-    y2 = y1 + getRandomInt(-25, 50);
+    x2 = x1 + getRandomInt(40, 120);
+    y2 = y1 + getRandomInt(-30, 55);
 
-    var triangleTopWidth = windowWidth * 11 / 10 * 2 / 3;
-    var triangleTopHeight = windowHeight * 11 / 10 / 2;
-    var borderTopY = x2 / triangleTopWidth * triangleTopHeight + (windowHeight - triangleTopHeight);
+    var triangleWidth = windowWidth * 2 / 3;
+    var triangleHeight = windowHeight / 2;
+    var borderY = x2 / triangleWidth * triangleHeight + (windowHeight - triangleHeight);
 
-    var triangleBottomWidth = windowWidth * 9 / 10 * 2 / 3;
-    var triangleBottomHeight = windowHeight * 9 / 10 / 2;
-    var borderBottomY = x2 / triangleBottomWidth * triangleBottomHeight + (windowHeight - triangleBottomHeight);
-
-    if (y2 < borderTopY) {
+    if (y2 + 150 < borderY) {
       y2 += 50;
     }
 
-    else if (y2 > borderBottomY) {
+    else if (y2 - 150 > borderY) {
       y2 -= 50;
     }
+
     idCounter += 1;
     squares.push({
       id: idCounter,
