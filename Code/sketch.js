@@ -4,22 +4,14 @@ function setup() {
 }
 
 var idCounter = 0;
-var x1
-var y1
-var x2
-var y2
-var x3
-var y3
-var triangles = [];
+var x;
+var y;
+var points = [];
 
-triangles.push({
+points.push({
   id: idCounter,
-  x1: 0,
-  y1: 0,
-  x2: 0,
-  y2: 600,
-  x3: 0,
-  y3: 0,
+  x: 0,
+  y: 600,
   delete: false
 })
 
@@ -27,42 +19,30 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function move() {
-
-}
-
 function spawn() {
-  x1 = triangles[idCounter].x2;
-  y1 = triangles[idCounter].y2;
-  x2 = x1 + getRandomInt(25, 100);
-  y2 = y1 + getRandomInt(-50, 50);
-  console.log(x1, y1, x2, y2);
-  if (y1 > y2) {
-    x3 = x2;
-    y3 = y1;
-  }
-  else {
-    x3 = x1;
-    y3 = y2;
-  }
-  fill('red')
-  triangle(x1, y1, x2, y2, x3, y3);
-  triangles.push({
+  x = points[idCounter].x + getRandomInt(25, 100);
+  y = points[idCounter].y + getRandomInt(-50, 50);
+  idCounter += 1;
+  points.push({
     id: idCounter,
-    x1: x1,
-    y1: y1,
-    x2: x2,
-    y2: y2,
-    x3: x3,
-    y3: y3,
+    x: x,
+    y: y,
     delete: false
   })
-  idCounter += 1;
+  console.log(x, y)
 }
+
 function draw() {
   background(220);
-  //points.forEach(point => move())//
   spawn();
+  fill('red');
+  beginShape(TESS);
+  for (var i = 0; i < idCounter; i++) {
+    vertex(points[i].x, points[i].y)
+  }
+  vertex(displayWidth, displayHeight)
+  vertex(0, displayHeight)
+  endShape(CLOSE);
 }
 
 
