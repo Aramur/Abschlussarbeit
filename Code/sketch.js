@@ -1,17 +1,20 @@
-var idCounter = 0;
+var idCounterChasm = 0;
 var x1;
 var y1;
 var x2;
 var y2;
 var squares = [];
 var color2 = '#2a3033';
+var img;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(5);
+  img = loadImage('pictures/fir.png');
 
   squares.push({
-    id: idCounter,
+    id: idCounterChasm,
     x1: 0,
     y1: 0,
     x2: 0,
@@ -25,34 +28,34 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function spawn() {
-  if (squares[idCounter].y2 < windowHeight + 100) {
-    x1 = squares[idCounter].x2;
-    y1 = squares[idCounter].y2;
-    x2 = x1 + getRandomInt(40, 120);
-    y2 = y1 + getRandomInt(-30, 55);
+function letChasm() {
+  if (squares[idCounterChasm].y2 < windowHeight + 100) {
+    x1 = squares[idCounterChasm].x2;
+    y1 = squares[idCounterChasm].y2;
+    x2 = x1 + getRandomInt(40, 100);
+    y2 = y1 + getRandomInt(-26, 64);
 
     var triangleWidth = windowWidth * 2 / 3;
     var triangleHeight = windowHeight / 2;
     var borderY = x2 / triangleWidth * triangleHeight + (windowHeight - triangleHeight);
 
-    if (y2 + 150 < borderY) {
+    if (y2 + 100 < borderY) {
       y2 += 50;
     }
 
-    else if (y2 - 150 > borderY) {
+    else if (y2 - 100 > borderY) {
       y2 -= 50;
     }
 
-    idCounter += 1;
+    idCounterChasm += 1;
     if (y1 <= y2) {
-      color2 = '#2a3033';
+      color2 = '#2a3033'; //color(150);
     }
     else {
       color2 = '#6a7175';
     }
     squares.push({
-      id: idCounter,
+      id: idCounterChasm,
       x1: x1,
       y1: y1,
       x2: x2,
@@ -63,10 +66,34 @@ function spawn() {
   }
 }
 
+var idCounterForest = 0;
+var x;
+var y;
+var points = [];
+points.push({
+  id: idCounterForest,
+  //x: windowWidth / 3,
+  y: 0,
+  delete: false
+})
+
+function letForest() {
+  x = points[idCounterForest].x + getRandomInt(90, 120);
+  y = points[idCounterForest].y + getRandomInt(-13, 32);
+  idCounterForest += 1;
+  points.push({
+    id: idCounterForest,
+    x: x,
+    y: y,
+    delete: false
+  })
+}
+
 function draw() {
   background(220);
-  spawn();
-  for (var i = 0; i < idCounter; i++) {
+  letChasm();
+  //letForest();
+  for (var i = 0; i < idCounterChasm; i++) {
     fill(squares[i].color);
     beginShape(TESS);
     vertex(squares[i].x1, squares[i].y1)
@@ -75,7 +102,8 @@ function draw() {
     vertex(squares[i].x1, windowHeight)
     endShape(CLOSE);
   }
+  image(img, 0, 0, 128, 128);
+  //for (var i = 0; i < idCounterForest; i++) {
+  // image(points[i].x, points[i].y, 64, 64);
+  //  }
 }
-
-
-
