@@ -1,4 +1,4 @@
-class Chasms {
+class Chasm {
     id;
     x1;
     y1;

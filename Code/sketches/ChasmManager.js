@@ -3,7 +3,7 @@ class ChasmManager {
     chasms = [];
 
     letFirstChasm() {
-        var chasm = new Chasms();
+        var chasm = new Chasm();
         chasm.id = this.idCounter;
         chasm.x1 = 0;
         chasm.y1 = 0;
@@ -43,7 +43,7 @@ class ChasmManager {
 
             var color = this.getColor(y1, y2);
 
-            var chasm = new Chasms()
+            var chasm = new Chasm()
             chasm.x1 = x1;
             chasm.id = this.idCounter;
             chasm.y1 = y1;
