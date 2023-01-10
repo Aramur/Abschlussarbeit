@@ -5,13 +5,17 @@ var x2;
 var y2;
 var squares = [];
 var color2 = '#2a3033';
-var img;
 
+var fir;
+var idCounterForest = 0;
+var x;
+var y;
+var points = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(5);
-  img = loadImage('pictures/fir.png');
+  fir = loadImage('pictures/fir.png');
 
   squares.push({
     id: idCounterChasm,
@@ -20,6 +24,12 @@ function setup() {
     x2: 0,
     y2: windowHeight / 2,
     color: color2,
+    delete: false
+  })
+  points.push({
+    id: idCounterForest,
+    x: windowWidth / 3,
+    y: -150,
     delete: false
   })
 }
@@ -66,20 +76,9 @@ function letChasm() {
   }
 }
 
-var idCounterForest = 0;
-var x;
-var y;
-var points = [];
-points.push({
-  id: idCounterForest,
-  //x: windowWidth / 3,
-  y: 0,
-  delete: false
-})
-
 function letForest() {
   x = points[idCounterForest].x + getRandomInt(90, 120);
-  y = points[idCounterForest].y + getRandomInt(-13, 32);
+  y = points[idCounterForest].y + getRandomInt(-39, 96);
   idCounterForest += 1;
   points.push({
     id: idCounterForest,
@@ -92,7 +91,7 @@ function letForest() {
 function draw() {
   background(220);
   letChasm();
-  //letForest();
+  letForest();
   for (var i = 0; i < idCounterChasm; i++) {
     fill(squares[i].color);
     beginShape(TESS);
@@ -102,8 +101,7 @@ function draw() {
     vertex(squares[i].x1, windowHeight)
     endShape(CLOSE);
   }
-  image(img, 0, 0, 128, 128);
-  //for (var i = 0; i < idCounterForest; i++) {
-  // image(points[i].x, points[i].y, 64, 64);
-  //  }
+  for (var i = 0; i < idCounterForest; i++) {
+    image(fir, points[i].x, points[i].y, 200, 200);
+  }
 }
