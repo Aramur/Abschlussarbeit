@@ -5,8 +5,8 @@ class FirManager {
     letFirstFir() {
         var fir = new Fir();
         fir.id = this.idCounter;
-        fir.x = windowWidth / 3 - 120;
-        fir.y = -150;
+        fir.x = windowWidth / 3;
+        fir.y = -170;
         fir.delete = false;
 
         this.firs.push(fir);
@@ -20,17 +20,30 @@ class FirManager {
 
 
     letForest() {
-        var x = this.firs[this.idCounter].x + Helper.getRandomInt(90, 120);
-        var y = this.firs[this.idCounter].y + Helper.getRandomInt(-39, 96);
+        if (this.firs[this.idCounter].x < windowWidth + 200) {
+            var x = this.firs[this.idCounter].x + Helper.getRandomInt(75, 120);
+            var y = this.firs[this.idCounter].y + Helper.getRandomInt(-26, 64);
 
-        this.idCounter += 1;
+            var triangleWidth = windowWidth * 2 / 3;
+            var triangleHeight = windowHeight / 2;
+            var yBorder = triangleHeight - (windowWidth - x) / triangleWidth * triangleHeight - 170; //170 = pictureHeight - empty room
 
-        var fir = new Fir();
-        fir.id = this.idCounter;
-        fir.x = x;
-        fir.y = y;
-        fir.delete = false;
+            if (y + 50 < yBorder) {
+                y += 50;
+            }
+            else if (y - 50 > yBorder) {
+                y -= 50;
+            }
 
-        this.firs.push(fir);
+            this.idCounter += 1;
+
+            var fir = new Fir();
+            fir.id = this.idCounter;
+            fir.x = x;
+            fir.y = y;
+            fir.delete = false;
+
+            this.firs.push(fir);
+        }
     }
 }
