@@ -31,7 +31,6 @@ class FirManager {
             if (this.firs[row][id].x < windowWidth + 200) {
                 var x = this.firs[row][id].x + Helper.getRandomInt(75, 120);
                 var y = this.firs[row][id].y + Helper.getRandomInt(-26, 64);
-                console.log(x, y);
 
                 var triangleWidth = windowWidth * 2 / 3 - row * 120;
                 var triangleHeight = windowHeight / 2 - row * 50;
