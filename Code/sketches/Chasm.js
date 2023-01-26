@@ -9,6 +9,7 @@ class Chasm {
 
     draw() {
         fill(this.color);
+        noStroke();
         beginShape(TESS);
         vertex(this.x1, this.y1)
         vertex(this.x2, this.y2)

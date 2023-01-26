@@ -25,7 +25,7 @@ class ChasmManager {
         if (this.chasms[this.idCounter].y2 < windowHeight + 100) {
             var x1 = this.chasms[this.idCounter].x2;
             var y1 = this.chasms[this.idCounter].y2;
-            var x2 = x1 + Helper.getRandomInt(40, 100);
+            var x2 = x1 + Helper.getRandomInt(60, 120);
             var y2 = y1 + Helper.getRandomInt(-26, 64);
 
             var triangleWidth = windowWidth * 2 / 3;
@@ -33,15 +33,15 @@ class ChasmManager {
             var yBorder = x2 / triangleWidth * triangleHeight + (windowHeight - triangleHeight);
 
             if (y2 + 100 < yBorder) {
-                y2 += 50;
+                y2 += 64;
             }
             else if (y2 - 100 > yBorder) {
-                y2 -= 50;
+                y2 -= 26;
             }
 
             this.idCounter += 1;
 
-            var color = this.getColor(y1, y2);
+            var color = this.getColor(y1, x1, y2, x2);
 
             var chasm = new Chasm()
             chasm.x1 = x1;
@@ -56,12 +56,8 @@ class ChasmManager {
         }
     }
 
-    getColor(y1, y2) {
-        if (y1 <= y2) {
-            return '#2a3033'; //color(150);
-        }
-        else {
-            return '#6a7175';
-        }
+    getColor(y1, x1, y2, x2) {
+        var gradient = (y1 - y2) / (x2 - x1) * 35 + 70;
+        return gradient, gradient, gradient;
     }
 }

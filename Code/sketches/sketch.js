@@ -4,7 +4,7 @@ var skier = new Skier();
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(16);
+  frameRate(20);
   Fir.loadImage();
   Skier.loadImage();
   chasmManager.letFirstChasm();
@@ -13,11 +13,11 @@ function setup() {
 
 function draw() {
   background(220);
-  skier.calculateSkier();
   chasmManager.letChasm();
   firManager.letForest();
   chasmManager.drawChasms();
   firManager.drawForest();
+  skier.calculateSkier();
 }
 
 function keyPressed() {

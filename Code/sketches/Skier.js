@@ -3,8 +3,8 @@ class Skier {
     static images = [];
 
     rotation = 0;
-
-
+    positionX = 0;
+    positionY = 0;
 
     static loadImage() {
         Skier.skierImage = loadImage('pictures/skiertest.png')
@@ -25,15 +25,17 @@ class Skier {
 
     calculateSkier() {
 
-        var positionX = windowWidth / 6;
-        var positionY = windowHeight / 4 - 100;
+        if (this.positionX == 0) {
+            this.positionX = windowWidth / 3;
+        }
+        if (this.positionY == 0) {
+            this.positionY = windowHeight / 3 - 100;
+        }
 
-        positionX += 1 / 2 * windowHeight / (this.rotation * 500);
-        positionX += 2 / 3 * windowWidth / (this.rotation * 500)
+        this.positionX -= 1 / 2 * windowHeight / 1000 * this.rotation;
+        this.positionY += 2 / 3 * windowWidth / 1000 * this.rotation;
 
-        console.log(positionX, positionY)
-
-        image(Skier.skierImage, positionX, positionY, 150, 150);
-        image(Skier.images[this.rotation + 5], positionX, positionY, 150, 150);
+        image(Skier.skierImage, this.positionX, this.positionY, 150, 150);
+        image(Skier.images[this.rotation + 5], this.positionX, this.positionY, 150, 150);
     }
 }

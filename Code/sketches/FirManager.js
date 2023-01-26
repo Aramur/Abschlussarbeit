@@ -2,14 +2,13 @@ class FirManager {
     firs = [];
 
     letFirstFir() {
-        for (var row = 0; row <= 10; row++) { //0,1.2.3.4.5
-
+        for (var row = 0; row <= 10; row++) {
             this.firs.push([])
 
             var fir = new Fir();
             fir.id = 0;
-            fir.x = windowWidth / 3 + row * 120;
-            fir.y = -170;
+            fir.x = windowWidth / 3 - 300 + row * 120;
+            fir.y = -200;
             fir.delete = false;
 
             this.firs[row].push(fir);
@@ -34,13 +33,13 @@ class FirManager {
 
                 var triangleWidth = windowWidth * 2 / 3 - row * 120;
                 var triangleHeight = windowHeight / 2 - row * 50;
-                var yBorder = triangleHeight - (windowWidth - x) / triangleWidth * triangleHeight - 170; //170 = pictureHeight - empty room
+                var yBorder = triangleHeight - (windowWidth - x) / triangleWidth * triangleHeight - 150; //150 = pictureHeight - empty room
 
                 if (y + 50 < yBorder) {
                     y += 50;
                 }
                 else if (y - 50 > yBorder) {
-                    y -= 50;
+                    y -= 64;
                 }
 
                 var fir = new Fir();
