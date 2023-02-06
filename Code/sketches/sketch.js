@@ -1,35 +1,27 @@
 var chasmManager = new ChasmManager();
 var firManager = new FirManager();
 var skier = new Skier();
+var timeOfLastDraw = Date.now();
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(20);
   Fir.loadImage();
   Skier.loadImage();
   chasmManager.letFirstChasm();
   firManager.letFirstFir();
+  skier.loadSkier();
 }
 
 function draw() {
+  const timeBetweenDraw = Date.now() - timeOfLastDraw;
+
   background(220);
   chasmManager.letChasm();
   firManager.letForest();
+  skier.rotate(timeBetweenDraw);
   chasmManager.drawChasms();
   firManager.drawForest();
-  skier.calculateSkier();
-}
+  skier.calculateSkier(timeBetweenDraw);
 
-function keyPressed() {
-  if (keyCode == LEFT_ARROW) {
-    if (skier.rotation <= 4) {
-      skier.rotation += 1;
-    }
-
-  }
-  else if (keyCode == RIGHT_ARROW) {
-    if (skier.rotation >= -4) {
-      skier.rotation -= 1;
-    }
-  }
+  timeOfLastDraw += timeBetweenDraw;
 }
