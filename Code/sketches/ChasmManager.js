@@ -1,30 +1,29 @@
 class ChasmManager {
-    idCounter = 0;
+    deleteCounter = 0;
     chasms = [];
 
     letFirstChasm() {
         var chasm = new Chasm();
-        chasm.id = this.idCounter;
+        chasm.id = this.chasms.length;
         chasm.x1 = 0;
         chasm.y1 = 0;
         chasm.x2 = 0;
         chasm.y2 = windowHeight / 2;
         chasm.color = this.getColor(chasm.y1, chasm.y2);
-        chasm.delete = false;
 
         this.chasms.push(chasm);
     }
 
     drawChasms() {
-        for (var i = 0; i < this.idCounter; i++) {
-            this.chasms[i].draw();
+        for (let chasm = this.deleteCounter; chasm < this.chasms.length; chasm++) {
+            this.chasms[chasm].draw();
         }
     }
 
     letChasm() {
-        if (this.chasms[this.idCounter].y2 < windowHeight + 100) {
-            var x1 = this.chasms[this.idCounter].x2;
-            var y1 = this.chasms[this.idCounter].y2;
+        if (this.chasms[this.chasms.length - 1].y2 < windowHeight + 100) {
+            var x1 = this.chasms[this.chasms.length - 1].x2;
+            var y1 = this.chasms[this.chasms.length - 1].y2;
             var x2 = x1 + Helper.getRandomInt(60, 120);
             var y2 = y1 + Helper.getRandomInt(-26, 64);
 
@@ -39,20 +38,21 @@ class ChasmManager {
                 y2 -= 26;
             }
 
-            this.idCounter += 1;
+            this.chasms.length += 1;
 
             var color = this.getColor(y1, x1, y2, x2);
 
             var chasm = new Chasm()
             chasm.x1 = x1;
-            chasm.id = this.idCounter;
+            chasm.id = this.chasms.length;
             chasm.y1 = y1;
             chasm.x2 = x2;
             chasm.y2 = y2;
             chasm.color = color;
-            chasm.delete = false;
 
             this.chasms.push(chasm);
+
+            this.chasms = this.chasms.filter(chasm => chasm.x2 >= - 100);
         }
     }
 
@@ -60,4 +60,14 @@ class ChasmManager {
         var gradient = (y1 - y2) / (x2 - x1) * 35 + 70;
         return gradient, gradient, gradient;
     }
+
+    moveChasm() {
+        for (let chasm = 0; chasm < this.chasms.length; chasm++) {
+            this.chasms[chasm].x1 -= 2 / 3 * windowWidth / 500;
+            this.chasms[chasm].y1 -= 1 / 2 * windowHeight / 500;
+            this.chasms[chasm].x2 -= 2 / 3 * windowWidth / 500;
+            this.chasms[chasm].y2 -= 1 / 2 * windowHeight / 500;
+        }
+    }
 }
+

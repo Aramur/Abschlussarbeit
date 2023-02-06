@@ -5,7 +5,6 @@ class Chasm {
     x2;
     y2;
     color;
-    delete;
 
     draw() {
         fill(this.color);
