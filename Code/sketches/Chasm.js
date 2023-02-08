@@ -12,8 +12,8 @@ class Chasm {
         beginShape(TESS);
         vertex(this.x1, this.y1)
         vertex(this.x2, this.y2)
-        vertex(this.x2, windowWidth)
-        vertex(this.x1, windowHeight)
+        vertex(this.x2, 0)
+        vertex(this.x1, 0)
         endShape(CLOSE);
     }
 }

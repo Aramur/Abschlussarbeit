@@ -18,13 +18,14 @@ function draw() {
 
   background(220);
   chasmManager.letChasm();
-  chasmManager.moveChasm();
-  firManager.letForest();
-  firManager.moveForest();
+  chasmManager.moveChasm(timeBetweenDraw);
   skier.rotate(timeBetweenDraw);
+  firManager.letForest();
+  firManager.moveForest(timeBetweenDraw);
   chasmManager.drawChasms();
-  firManager.drawForest();
   skier.calculateSkier(timeBetweenDraw);
+  firManager.drawForest();
+
 
   if (fpsDisplayed) {
     fill(255);

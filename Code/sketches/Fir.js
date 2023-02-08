@@ -10,7 +10,7 @@ class Fir {
     }
 
     draw() {
-        image(Fir.firImage, this.x, this.y, 200, 200);
+        image(Fir.firImage, this.x, this.y, windowHeight / 5, windowHeight / 5);
     }
 
 

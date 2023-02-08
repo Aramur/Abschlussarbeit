@@ -1,5 +1,4 @@
 class ChasmManager {
-    deleteCounter = 0;
     chasms = [];
 
     letFirstChasm() {
@@ -7,21 +6,21 @@ class ChasmManager {
         chasm.id = this.chasms.length;
         chasm.x1 = 0;
         chasm.y1 = 0;
-        chasm.x2 = 0;
-        chasm.y2 = windowHeight / 2;
+        chasm.x2 = windowWidth / 3;
+        chasm.y2 = 0;
         chasm.color = this.getColor(chasm.y1, chasm.y2);
 
         this.chasms.push(chasm);
     }
 
     drawChasms() {
-        for (let chasm = this.deleteCounter; chasm < this.chasms.length; chasm++) {
+        for (let chasm = 0; chasm < this.chasms.length; chasm++) {
             this.chasms[chasm].draw();
         }
     }
 
     letChasm() {
-        if (this.chasms[this.chasms.length - 1].y2 < windowHeight + 100) {
+        if (this.chasms[this.chasms.length - 1].y2 < windowWidth + 200) {
             var x1 = this.chasms[this.chasms.length - 1].x2;
             var y1 = this.chasms[this.chasms.length - 1].y2;
             var x2 = x1 + Helper.getRandomInt(60, 120);
@@ -29,7 +28,7 @@ class ChasmManager {
 
             var triangleWidth = windowWidth * 2 / 3;
             var triangleHeight = windowHeight / 2;
-            var yBorder = x2 / triangleWidth * triangleHeight + (windowHeight - triangleHeight);
+            var yBorder = triangleHeight - (windowWidth - x2) / triangleWidth * triangleHeight + 80;
 
             if (y2 + 100 < yBorder) {
                 y2 += 64;
@@ -37,8 +36,6 @@ class ChasmManager {
             else if (y2 - 100 > yBorder) {
                 y2 -= 26;
             }
-
-            this.chasms.length += 1;
 
             var color = this.getColor(y1, x1, y2, x2);
 
@@ -61,12 +58,12 @@ class ChasmManager {
         return gradient, gradient, gradient;
     }
 
-    moveChasm() {
+    moveChasm(timeBetweenDraw) {
         for (let chasm = 0; chasm < this.chasms.length; chasm++) {
-            this.chasms[chasm].x1 -= 2 / 3 * windowWidth / 500;
-            this.chasms[chasm].y1 -= 1 / 2 * windowHeight / 500;
-            this.chasms[chasm].x2 -= 2 / 3 * windowWidth / 500;
-            this.chasms[chasm].y2 -= 1 / 2 * windowHeight / 500;
+            this.chasms[chasm].x1 -= 2 / 3 * windowWidth / 3000 * timeBetweenDraw;
+            this.chasms[chasm].y1 -= 1 / 2 * windowHeight / 3000 * timeBetweenDraw;
+            this.chasms[chasm].x2 -= 2 / 3 * windowWidth / 3000 * timeBetweenDraw;
+            this.chasms[chasm].y2 -= 1 / 2 * windowHeight / 3000 * timeBetweenDraw;
         }
     }
 }
