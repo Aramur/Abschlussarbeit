@@ -8,18 +8,19 @@ class Skier {
     positionY = 0;
 
     static loadImage() {
-        Skier.skierImage = loadImage('pictures/skiertest.png')
-        Skier.images.push(loadImage('pictures/ski-5.png'));
-        Skier.images.push(loadImage('pictures/ski-4.png'));
-        Skier.images.push(loadImage('pictures/ski-3.png'));
-        Skier.images.push(loadImage('pictures/ski-2.png'));
-        Skier.images.push(loadImage('pictures/ski-1.png'));
-        Skier.images.push(loadImage('pictures/ski0.png'));
-        Skier.images.push(loadImage('pictures/ski1.png'));
-        Skier.images.push(loadImage('pictures/ski2.png'));
-        Skier.images.push(loadImage('pictures/ski3.png'));
-        Skier.images.push(loadImage('pictures/ski4.png'));
-        Skier.images.push(loadImage('pictures/ski5.png'));
+        Skier.images.push(loadImage('pictures/skier-6.png'));
+        Skier.images.push(loadImage('pictures/skier-5.png'));
+        Skier.images.push(loadImage('pictures/skier-4.png'));
+        Skier.images.push(loadImage('pictures/skier-3.png'));
+        Skier.images.push(loadImage('pictures/skier-2.png'));
+        Skier.images.push(loadImage('pictures/skier-1.png'));
+        Skier.images.push(loadImage('pictures/skier0.png'));
+        Skier.images.push(loadImage('pictures/skier1.png'));
+        Skier.images.push(loadImage('pictures/skier2.png'));
+        Skier.images.push(loadImage('pictures/skier3.png'));
+        Skier.images.push(loadImage('pictures/skier4.png'));
+        Skier.images.push(loadImage('pictures/skier5.png'));
+        Skier.images.push(loadImage('pictures/skier6.png'));
     }
 
     loadSkier() {
@@ -34,7 +35,7 @@ class Skier {
     rotate(timeBetweenDraw) {
         if (this.rotateCounter >= 0.03 * timeBetweenDraw) {
             if (keyIsDown(LEFT_ARROW)) {
-                if (skier.rotation <= 4) {
+                if (skier.rotation <= 5) {
                     skier.rotation += 1;
                 }
 
@@ -55,8 +56,6 @@ class Skier {
     calculateSkier(timeBetweenDraw) {
         this.positionX -= 1 / 2 * windowHeight / (54000 / timeBetweenDraw) * this.rotation;
         this.positionY += 2 / 3 * windowWidth / (54000 / timeBetweenDraw) * this.rotation;
-
-        image(Skier.images[this.rotation + 5], this.positionX, this.positionY, 150, 150);
-        image(Skier.skierImage, this.positionX, this.positionY, 150, 150);
+        image(Skier.images[this.rotation + 5], this.positionX, this.positionY, 200, 200);
     }
 }
