@@ -3,9 +3,20 @@ var firManager = new FirManager();
 var skier = new Skier();
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
+var canvasHeightDisplacement = 0;
+var canvasWidthDisplacement = 0;
+var skiGradient = 0.425;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  if (windowHeight / windowWidth < skiGradient) {
+    canvasWidthDisplacement = windowWidth - windowHeight / skiGradient;
+  }
+  else if (windowHeight / windowWidth > skiGradient) {
+    canvasHeightDisplacement = windowHeight - windowWidth * skiGradient;
+  }
+
+  let cnv = createCanvas(windowWidth - canvasWidthDisplacement, windowHeight - canvasHeightDisplacement);
+  cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
   Fir.loadImage();
   Skier.loadImage();
   chasmManager.letFirstChasm();
@@ -29,7 +40,7 @@ function draw() {
 
   if (fpsDisplayed) {
     fill(255);
-    text(Math.round(frameRate()), windowWidth / 20, windowHeight - windowHeight / 20);
+    text(Math.round(frameRate()), width / 20, height - height / 20);
   }
 
   timeOfLastDraw += timeBetweenDraw;

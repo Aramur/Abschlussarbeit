@@ -9,7 +9,7 @@ class FirManager {
             var fir = new Fir();
             fir.id = 0;
             fir.x = -200;
-            fir.y = windowHeight / 2 - 200 + row * 45;
+            fir.y = height / 2 - 200 + row * height / 20;
             fir.delete = false;
 
             this.firs[row].push(fir);
@@ -28,18 +28,18 @@ class FirManager {
         for (let row = 0; row <= this.rows; row++) {
             var id = this.firs[row].length - 1;
 
-            if (this.firs[row][id].y < windowHeight + 200) {
-                var x = this.firs[row][id].x + Helper.getRandomInt(75, 120);
-                var y = this.firs[row][id].y + Helper.getRandomInt(-26, 64);
+            if (this.firs[row][id].y < height + 200) {
+                var x = this.firs[row][id].x + Helper.getRandomInt(height / 10, height / 7);
+                var y = this.firs[row][id].y + Helper.getRandomInt(height / 36, height / 12);
 
-                var triangleWidth = windowWidth / 3 * 2;
-                var triangleHeight = windowHeight / 2 + row * 45;
+                var triangleWidth = width / 3 * 2;
+                var triangleHeight = height / 2 + row * height / 20;
                 var yBorder = x / triangleWidth * triangleHeight + triangleHeight - 100;
 
-                if (y + 45 < yBorder) {
+                if (y + height / 20 < yBorder) {
                     y += 64;
                 }
-                else if (y - 45 > yBorder) {
+                else if (y - height / 20 > yBorder) {
                     y -= 26;
                 }
 
@@ -59,8 +59,8 @@ class FirManager {
     moveForest(timeBetweenDraw) {
         for (let row = 0; row <= this.rows; row++) {
             for (let fir = 0; fir <= this.firs[row].length - 1; fir++) {
-                this.firs[row][fir].x -= 2 / 3 * windowWidth / 3000 * timeBetweenDraw;
-                this.firs[row][fir].y -= 1 / 2 * windowHeight / 3000 * timeBetweenDraw;
+                this.firs[row][fir].x -= 2 / 3 * width / 3000 * timeBetweenDraw;
+                this.firs[row][fir].y -= 1 / 2 * height / 3000 * timeBetweenDraw;
             }
         }
     }
