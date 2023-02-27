@@ -28,7 +28,7 @@ class ChasmManager {
 
             var triangleWidth = width * 2 / 3;
             var triangleHeight = height / 2;
-            var yBorder = triangleHeight - (width - x2) / triangleWidth * triangleHeight + height / 18;
+            var yBorder = triangleHeight - (width - x2) / triangleWidth * triangleHeight + height / 7;
 
             if (y2 + 100 < yBorder) {
                 y2 += 64;

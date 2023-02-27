@@ -24,12 +24,8 @@ class Skier {
     }
 
     loadSkier() {
-        if (this.positionX == 0) {
-            this.positionX = width / 3;
-        }
-        if (this.positionY == 0) {
-            this.positionY = height / 3 - height / 8;
-        }
+        this.positionX = width / 3;
+        this.positionY = height / 3 - height / 8;
     }
 
     rotate(timeBetweenDraw) {
@@ -52,10 +48,14 @@ class Skier {
         }
     }
 
-
     calculateSkier(timeBetweenDraw) {
         this.positionX -= 1 / 2 * windowHeight / (54000 / timeBetweenDraw) * this.rotation;
         this.positionY += 2 / 3 * width / (54000 / timeBetweenDraw) * this.rotation;
+
+
+    }
+
+    drawSkier() {
         image(Skier.images[this.rotation + 5], this.positionX, this.positionY, height / 4, height / 4);
     }
 }

@@ -1,6 +1,8 @@
 var chasmManager = new ChasmManager();
 var firManager = new FirManager();
+var skierHitbox = new SkierHitbox();
 var skier = new Skier();
+var play = true;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -17,6 +19,8 @@ function setup() {
 
   let cnv = createCanvas(windowWidth - canvasWidthDisplacement, windowHeight - canvasHeightDisplacement);
   cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
+
+  skierHitbox.pushHitboxes();
   Fir.loadImage();
   Skier.loadImage();
   chasmManager.letFirstChasm();
@@ -27,15 +31,19 @@ function setup() {
 function draw() {
   const timeBetweenDraw = Date.now() - timeOfLastDraw;
 
-  background(220);
-  chasmManager.letChasm();
-  chasmManager.moveChasm(timeBetweenDraw);
-  skier.rotate(timeBetweenDraw);
-  firManager.letForest();
-  firManager.moveForest(timeBetweenDraw);
-  chasmManager.drawChasms();
-  skier.calculateSkier(timeBetweenDraw);
-  firManager.drawForest();
+  if (play == true) {
+    background(220);
+    skierHitbox.calculateSkierHitboxes();
+    chasmManager.letChasm();
+    chasmManager.moveChasm(timeBetweenDraw);
+    skier.rotate(timeBetweenDraw);
+    skier.calculateSkier(timeBetweenDraw);
+    firManager.letForest();
+    firManager.moveForest(timeBetweenDraw);
+    chasmManager.drawChasms();
+    skier.drawSkier();
+    firManager.drawForest();
+  }
 
 
   if (fpsDisplayed) {
