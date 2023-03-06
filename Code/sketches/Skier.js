@@ -37,7 +37,7 @@ class Skier {
 
             }
             if (keyIsDown(RIGHT_ARROW)) {
-                if (skier.rotation >= -4) {
+                if (skier.rotation >= -5) {
                     skier.rotation -= 1;
                 }
             }
@@ -56,6 +56,6 @@ class Skier {
     }
 
     drawSkier() {
-        image(Skier.images[this.rotation + 5], this.positionX, this.positionY, height / 4, height / 4);
+        image(Skier.images[this.rotation + 6], this.positionX, this.positionY, height / 4, height / 4);
     }
 }

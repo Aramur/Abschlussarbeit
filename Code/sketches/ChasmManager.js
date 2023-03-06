@@ -65,6 +65,22 @@ class ChasmManager {
             this.chasms[chasm].x2 -= 2 / 3 * width / 3000 * timeBetweenDraw;
             this.chasms[chasm].y2 -= 1 / 2 * height / 3000 * timeBetweenDraw;
         }
+        for (let points = 2; points <= 3; points++) {
+            var filteredChasms = this.chasms.filter(chasm => chasm.x2 >= skierHitbox.skierHitpoints[points].x);
+            filteredChasms = filteredChasms.filter(chasm => chasm.x1 <= skierHitbox.skierHitpoints[points].x);
+
+
+            if (filteredChasms.length >= 1) {
+                var chasmWidth = filteredChasms[0].x2 - filteredChasms[0].x1;
+                var chasmHeight = filteredChasms[0].y2 - filteredChasms[0].y1;
+                var littleWidth = skierHitbox.skierHitpoints[points].x - filteredChasms[0].x1;
+                var chasmPoint = filteredChasms[0].y1 + littleWidth / chasmWidth * chasmHeight;
+
+                if (chasmPoint >= skierHitbox.skierHitpoints[points].y) {
+                    play = false;
+                }
+            }
+        }
     }
 }
 

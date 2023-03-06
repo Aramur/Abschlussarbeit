@@ -33,11 +33,11 @@ function draw() {
 
   if (play == true) {
     background(220);
+    skier.rotate(timeBetweenDraw);
+    skier.calculateSkier(timeBetweenDraw);
     skierHitbox.calculateSkierHitboxes();
     chasmManager.letChasm();
     chasmManager.moveChasm(timeBetweenDraw);
-    skier.rotate(timeBetweenDraw);
-    skier.calculateSkier(timeBetweenDraw);
     firManager.letForest();
     firManager.moveForest(timeBetweenDraw);
     chasmManager.drawChasms();
@@ -49,6 +49,12 @@ function draw() {
   if (fpsDisplayed) {
     fill(255);
     text(Math.round(frameRate()), width / 20, height - height / 20);
+
+    stroke('black')
+    strokeWeight(10);
+    for (let points = 0; points <= 3; points++) {
+      point(skierHitbox.skierHitpoints[points].x, skierHitbox.skierHitpoints[points].y)
+    }
   }
 
   timeOfLastDraw += timeBetweenDraw;
