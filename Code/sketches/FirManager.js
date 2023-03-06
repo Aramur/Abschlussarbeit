@@ -63,5 +63,15 @@ class FirManager {
                 this.firs[row][fir].y -= 1 / 2 * height / 3000 * timeBetweenDraw;
             }
         }
+        for (let points = 0; points < 1; points++) {
+            var filteredForest = this.firs[0].filter(fir => fir.x >= skierHitbox.skierHitpoints[points].x - 360 / 2560 * height);
+            filteredForest = filteredForest.filter(fir => fir.x <= skierHitbox.skierHitpoints[points].x - 260 / 2560 * height);
+
+            if (filteredForest.length >= 1) {
+                if (filteredForest[0].y + 550 / 2560 * height <= skierHitbox.skierHitpoints[points].y) {
+                    play = false;
+                }
+            }
+        }
     }
 }

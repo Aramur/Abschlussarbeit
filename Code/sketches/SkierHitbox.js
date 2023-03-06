@@ -72,7 +72,6 @@ class SkierHitbox {
 
     calculateSkierHitboxes() {
         this.skierHitpoints = [];
-        console.log(this.skierHitboxData[skier.rotation + 6].rightSkiBacky)
         this.skierHitpoints.push({
             x: skier.positionX + this.skierHitboxData[skier.rotation + 6].rightSkiFrontx / 2560 * height,
             y: skier.positionY + this.skierHitboxData[skier.rotation + 6].rightSkiFronty / 2560 * height,
