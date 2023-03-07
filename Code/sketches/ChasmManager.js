@@ -6,7 +6,7 @@ class ChasmManager {
         chasm.id = this.chasms.length;
         chasm.x1 = 0;
         chasm.y1 = 0;
-        chasm.x2 = width / 3;
+        chasm.x2 = width / 12 * 5;
         chasm.y2 = 0;
         chasm.color = this.getColor(chasm.y1, chasm.y2);
 
@@ -26,8 +26,8 @@ class ChasmManager {
             var x2 = x1 + Helper.getRandomInt(height / 12, height / 7);
             var y2 = y1 + Helper.getRandomInt(-height / 38, height / 14);
 
-            var triangleWidth = width * 2 / 3;
-            var triangleHeight = height / 2;
+            var triangleWidth = width * 7 / 12;
+            var triangleHeight = height * 7 / 12;
             var yBorder = triangleHeight - (width - x2) / triangleWidth * triangleHeight + height / 7;
 
             if (y2 + 100 < yBorder) {
@@ -60,10 +60,10 @@ class ChasmManager {
 
     moveChasm(timeBetweenDraw) {
         for (let chasm = 0; chasm < this.chasms.length; chasm++) {
-            this.chasms[chasm].x1 -= 2 / 3 * width / 3000 * timeBetweenDraw;
-            this.chasms[chasm].y1 -= 1 / 2 * height / 3000 * timeBetweenDraw;
-            this.chasms[chasm].x2 -= 2 / 3 * width / 3000 * timeBetweenDraw;
-            this.chasms[chasm].y2 -= 1 / 2 * height / 3000 * timeBetweenDraw;
+            this.chasms[chasm].x1 -= 7 / 12 * width / 3000 * timeBetweenDraw;
+            this.chasms[chasm].y1 -= 7 / 12 * height / 3000 * timeBetweenDraw;
+            this.chasms[chasm].x2 -= 7 / 12 * width / 3000 * timeBetweenDraw;
+            this.chasms[chasm].y2 -= 7 / 12 * height / 3000 * timeBetweenDraw;
         }
         for (let points = 2; points <= 3; points++) {
             var filteredChasms = this.chasms.filter(chasm => chasm.x2 >= skierHitbox.skierHitpoints[points].x);

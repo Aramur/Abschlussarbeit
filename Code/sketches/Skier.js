@@ -25,7 +25,7 @@ class Skier {
 
     loadSkier() {
         this.positionX = width / 3;
-        this.positionY = height / 3 - height / 8;
+        this.positionY = height / 5;
     }
 
     rotate(timeBetweenDraw) {

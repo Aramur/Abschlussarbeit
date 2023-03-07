@@ -9,7 +9,7 @@ class FirManager {
             var fir = new Fir();
             fir.id = 0;
             fir.x = -200;
-            fir.y = height / 2 - 200 + row * height / 20;
+            fir.y = height / 12 * 5 - 200 + row * height / 20;
             fir.delete = false;
 
             this.firs[row].push(fir);
@@ -32,14 +32,14 @@ class FirManager {
                 var x = this.firs[row][id].x + Helper.getRandomInt(height / 10, height / 7);
                 var y = this.firs[row][id].y + Helper.getRandomInt(height / 36, height / 12);
 
-                var triangleWidth = width / 3 * 2;
-                var triangleHeight = height / 2 + row * height / 20;
+                var triangleWidth = width / 12 * 5;
+                var triangleHeight = height / 12 * 5 + row * height / 20;
                 var yBorder = x / triangleWidth * triangleHeight + triangleHeight - 100;
 
-                if (y + height / 20 < yBorder) {
+                if (y + height / 40 < yBorder) {
                     y += 64;
                 }
-                else if (y - height / 20 > yBorder) {
+                else if (y - height / 40 > yBorder) {
                     y -= 26;
                 }
 
@@ -59,8 +59,8 @@ class FirManager {
     moveForest(timeBetweenDraw) {
         for (let row = 0; row <= this.rows; row++) {
             for (let fir = 0; fir <= this.firs[row].length - 1; fir++) {
-                this.firs[row][fir].x -= 2 / 3 * width / 3000 * timeBetweenDraw;
-                this.firs[row][fir].y -= 1 / 2 * height / 3000 * timeBetweenDraw;
+                this.firs[row][fir].x -= 7 / 12 * width / 3000 * timeBetweenDraw;
+                this.firs[row][fir].y -= 7 / 12 * height / 3000 * timeBetweenDraw;
             }
         }
         for (let points = 0; points < 1; points++) {
