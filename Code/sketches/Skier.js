@@ -1,5 +1,4 @@
 class Skier {
-    static skierImage;
     static images = [];
 
     rotateCounter = 0;
@@ -24,21 +23,21 @@ class Skier {
     }
 
     loadSkier() {
-        this.positionX = width / 3;
-        this.positionY = height / 5;
+        this.positionX = width / 18 * 7;
+        this.positionY = height / 3;
     }
 
     rotate(timeBetweenDraw) {
         if (this.rotateCounter >= 0.03 * timeBetweenDraw) {
             if (keyIsDown(LEFT_ARROW)) {
-                if (skier.rotation <= 5) {
-                    skier.rotation += 1;
+                if (skier.rotation >= -5) {
+                    skier.rotation -= 1;
                 }
 
             }
             if (keyIsDown(RIGHT_ARROW)) {
-                if (skier.rotation >= -5) {
-                    skier.rotation -= 1;
+                if (skier.rotation <= 5) {
+                    skier.rotation += 1;
                 }
             }
             this.rotateCounter = 0;

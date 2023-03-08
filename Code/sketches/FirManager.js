@@ -29,18 +29,18 @@ class FirManager {
             var id = this.firs[row].length - 1;
 
             if (this.firs[row][id].y < height + 200) {
-                var x = this.firs[row][id].x + Helper.getRandomInt(height / 10, height / 7);
-                var y = this.firs[row][id].y + Helper.getRandomInt(height / 36, height / 12);
+                var x = this.firs[row][id].x + Helper.getRandomInt(height / 12, height / 7);
+                var y = this.firs[row][id].y + Helper.getRandomInt(height / 18, height / 10.5);
 
                 var triangleWidth = width / 12 * 5;
                 var triangleHeight = height / 12 * 5 + row * height / 20;
                 var yBorder = x / triangleWidth * triangleHeight + triangleHeight - 100;
 
-                if (y + height / 40 < yBorder) {
-                    y += 64;
+                if (y + height / 8 < yBorder) {
+                    y += height / 24;
                 }
-                else if (y - height / 40 > yBorder) {
-                    y -= 26;
+                else if (y - height / 8 > yBorder) {
+                    y -= height / 14;
                 }
 
                 var fir = new Fir();

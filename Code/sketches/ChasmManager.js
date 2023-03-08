@@ -24,17 +24,17 @@ class ChasmManager {
             var x1 = this.chasms[this.chasms.length - 1].x2;
             var y1 = this.chasms[this.chasms.length - 1].y2;
             var x2 = x1 + Helper.getRandomInt(height / 12, height / 7);
-            var y2 = y1 + Helper.getRandomInt(-height / 38, height / 14);
+            var y2 = y1 + Helper.getRandomInt(-height / 18, height / 10.5);
 
             var triangleWidth = width * 7 / 12;
             var triangleHeight = height * 7 / 12;
             var yBorder = triangleHeight - (width - x2) / triangleWidth * triangleHeight + height / 7;
 
-            if (y2 + 100 < yBorder) {
-                y2 += 64;
+            if (y2 + height / 8 < yBorder) {
+                y2 += height / 14;
             }
-            else if (y2 - 100 > yBorder) {
-                y2 -= 26;
+            else if (y2 - height / 8 > yBorder) {
+                y2 -= height / 24;
             }
 
             var color = this.getColor(y1, x1, y2, x2);
