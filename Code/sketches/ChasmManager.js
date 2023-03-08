@@ -26,14 +26,10 @@ class ChasmManager {
             var x2 = x1 + Helper.getRandomInt(height / 12, height / 7);
             var y2 = y1 + Helper.getRandomInt(-height / 18, height / 10.5);
 
-            var triangleWidth = width * 7 / 12;
-            var triangleHeight = height * 7 / 12;
-            var yBorder = triangleHeight - (width - x2) / triangleWidth * triangleHeight + height / 7;
-
-            if (y2 + height / 8 < yBorder) {
+            if (y2 + height / 8 < Helper.getYBoarderTop(x2)) {
                 y2 += height / 14;
             }
-            else if (y2 - height / 8 > yBorder) {
+            else if (y2 - height / 8 > Helper.getYBoarderTop(x2)) {
                 y2 -= height / 24;
             }
 

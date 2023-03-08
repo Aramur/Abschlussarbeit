@@ -2,6 +2,7 @@ var chasmManager = new ChasmManager();
 var firManager = new FirManager();
 var skierHitbox = new SkierHitbox();
 var skier = new Skier();
+var stones = new Stones();
 var play = true;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
@@ -39,6 +40,7 @@ function draw() {
     chasmManager.letChasm();
     chasmManager.moveChasm(timeBetweenDraw);
     firManager.letForest();
+    stones.letStones();
     firManager.moveForest(timeBetweenDraw);
     chasmManager.drawChasms();
     skier.drawSkier();

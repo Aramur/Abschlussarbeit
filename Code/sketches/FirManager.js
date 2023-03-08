@@ -32,14 +32,10 @@ class FirManager {
                 var x = this.firs[row][id].x + Helper.getRandomInt(height / 12, height / 7);
                 var y = this.firs[row][id].y + Helper.getRandomInt(height / 18, height / 10.5);
 
-                var triangleWidth = width / 12 * 5;
-                var triangleHeight = height / 12 * 5 + row * height / 20;
-                var yBorder = x / triangleWidth * triangleHeight + triangleHeight - 100;
-
-                if (y + height / 8 < yBorder) {
+                if (y + height / 8 < Helper.getYBoarderBottom(x, row)) {
                     y += height / 24;
                 }
-                else if (y - height / 8 > yBorder) {
+                else if (y - height / 8 > Helper.getYBoarderBottom(x, row)) {
                     y -= height / 14;
                 }
 
