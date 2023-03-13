@@ -44,8 +44,9 @@ function draw() {
     chasmManager.drawChasms();
     skier.drawSkier();
     firManager.drawForest();
-    stoneManager.letStones();
+    stoneManager.letStones(timeBetweenDraw);
     stoneManager.drawStones();
+    stoneManager.moveStone(timeBetweenDraw);
   }
 
 
