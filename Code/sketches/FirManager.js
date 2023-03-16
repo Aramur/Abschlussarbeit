@@ -9,7 +9,7 @@ class FirManager {
             var fir = new Fir();
             fir.id = 0;
             fir.x = -200;
-            fir.y = height / 12 * 5 - 200 + row * height / 20;
+            fir.y = height / 12 * 5 - height / 4 + row * height / 10;
             fir.delete = false;
 
             this.firs[row].push(fir);
@@ -28,7 +28,7 @@ class FirManager {
         for (let row = 0; row <= this.rows; row++) {
             var id = this.firs[row].length - 1;
 
-            if (this.firs[row][id].y < height + 200) {
+            if (this.firs[row][id].y < height + 1000) {
                 var x = this.firs[row][id].x + Helper.getRandomInt(height / 12, height / 7);
                 var y = this.firs[row][id].y + Helper.getRandomInt(height / 18, height / 10.5);
 

@@ -30,14 +30,14 @@ class Skier {
     rotate(timeBetweenDraw) {
         if (this.rotateCounter >= 0.03 * timeBetweenDraw) {
             if (keyIsDown(LEFT_ARROW)) {
-                if (skier.rotation >= -5) {
-                    skier.rotation -= 1;
+                if (skier.rotation <= 5) {
+                    skier.rotation += 1;
                 }
 
             }
             if (keyIsDown(RIGHT_ARROW)) {
-                if (skier.rotation <= 5) {
-                    skier.rotation += 1;
+                if (skier.rotation >= -5) {
+                    skier.rotation -= 1;
                 }
             }
             this.rotateCounter = 0;

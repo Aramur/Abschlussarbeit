@@ -9,7 +9,7 @@ class Helper {
     }
     static getYBoarderBottom(xCoordinate, row) {
         var triangleWidthBottom = width / 12 * 5;
-        var triangleHeightBottom = height / 12 * 5 + row * height / 20;
-        return xCoordinate / triangleWidthBottom * triangleHeightBottom + triangleHeightBottom - height / 8;
+        var triangleHeightBottom = height / 12 * 5;
+        return xCoordinate / triangleWidthBottom * triangleHeightBottom + triangleHeightBottom + row * height / 10 - height / 8;
     }
 }
