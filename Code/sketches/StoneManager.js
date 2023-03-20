@@ -7,6 +7,7 @@ class StoneManager {
     layerHeightTopBoarder;
     layerHeightBottomBoarder;
     biggestY;
+    checkedLayerY;
     let = true;
 
     letStones(timeBetweenDraw) {
@@ -48,9 +49,6 @@ class StoneManager {
                 var littleWidth = this.layerX - filteredChasms[0].x1;
                 var chasmPoint2 = filteredChasms[0].y1 + littleWidth / chasmWidth * chasmHeight;
             }
-            else {
-                this.let = false;
-            }
 
             this.layerHeightTopBoarder = max(chasmPoint0, chasmPoint1, chasmPoint2);
 
@@ -67,7 +65,35 @@ class StoneManager {
 
             this.layerHeightBottomBoarder = firLine;
 
-            this.layerY = Helper.getRandomInt(this.layerHeightTopBoarder, this.layerHeightBottomBoarder - this.layerHeight);
+            this.checkedLayerY = false
+            var filteredStones = this.stones.filter(stone => stone.layerX + stone.layerWidth >= this.layerX)
+            for (let escape = 0; this.checkedLayerY == false; escape++) {
+                this.checkedLayerY = true;
+                this.layerY = Helper.getRandomInt(this.layerHeightTopBoarder, this.layerHeightBottomBoarder - this.layerHeight);
+                for (let stones = 0; stones < filteredStones.length; stones++) {
+                    if (filteredStones[stones].layerY <= this.layerY + this.layerHeight) {
+                        if (filteredStones[stones].layerY >= this.layerY) {
+                            this.checkedLayerY = false;
+                        }
+                    }
+                    if (filteredStones[stones].layerY + filteredStones[stones].layerHeight <= this.layerY + this.layerHeight) {
+                        if (filteredStones[stones].layerY + filteredStones[stones].layerHeight >= this.layerY) {
+                            this.checkedLayerY = false;
+
+                        }
+                    }
+                    if (filteredStones[stones].layerY <= this.layerY) {
+                        if (filteredStones[stones].layerY + filteredStones[stones].layerHeight >= this.layerY + this.layerHeight) {
+                            this.checkedLayerY = false;
+
+                        }
+                    }
+                }
+                if (escape >= 10) {
+                    this.checkedLayerY = true;
+                    this.let = false;
+                }
+            }
 
             if (this.let == true) {
                 var stone = new Stones()
@@ -78,10 +104,10 @@ class StoneManager {
 
                 this.stones.push(stone);
             }
-
             this.let = true;
         }
     }
+
 
 
     drawStones() {
