@@ -1,5 +1,5 @@
-class StoneManager {
-    stones = [];
+class StonelayerManager {
+    stonelayers = [];
     layerX;
     layerY;
     layerWidth;
@@ -10,9 +10,9 @@ class StoneManager {
     checkedLayerY;
     let = true;
 
-    letStones(timeBetweenDraw) {
+    letStonelayers(timeBetweenDraw) {
         if (Helper.getRandomInt(1, timeBetweenDraw) == 1) {
-            this.layerWidth = Helper.getRandomInt(height / 10, height / 5);
+            this.layerWidth = Helper.getRandomInt(height / 12, height / 5);
             this.layerHeight = Helper.getRandomInt(height / 8, height / 4);
             this.layerX = width + 200;
 
@@ -66,24 +66,24 @@ class StoneManager {
             this.layerHeightBottomBoarder = firLine;
 
             this.checkedLayerY = false
-            var filteredStones = this.stones.filter(stone => stone.layerX + stone.layerWidth >= this.layerX)
+            var filteredStonelayers = this.stonelayers.filter(stone => stone.layerX + stone.layerWidth >= this.layerX)
             for (let escape = 0; this.checkedLayerY == false; escape++) {
                 this.checkedLayerY = true;
                 this.layerY = Helper.getRandomInt(this.layerHeightTopBoarder, this.layerHeightBottomBoarder - this.layerHeight);
-                for (let stones = 0; stones < filteredStones.length; stones++) {
-                    if (filteredStones[stones].layerY <= this.layerY + this.layerHeight) {
-                        if (filteredStones[stones].layerY >= this.layerY) {
+                for (let stone = 0; stone < filteredStonelayers.length; stone++) {
+                    if (filteredStonelayers[stone].layerY <= this.layerY + this.layerHeight) {
+                        if (filteredStonelayers[stone].layerY >= this.layerY) {
                             this.checkedLayerY = false;
                         }
                     }
-                    if (filteredStones[stones].layerY + filteredStones[stones].layerHeight <= this.layerY + this.layerHeight) {
-                        if (filteredStones[stones].layerY + filteredStones[stones].layerHeight >= this.layerY) {
+                    if (filteredStonelayers[stone].layerY + filteredStonelayers[stone].layerHeight <= this.layerY + this.layerHeight) {
+                        if (filteredStonelayers[stone].layerY + filteredStonelayers[stone].layerHeight >= this.layerY) {
                             this.checkedLayerY = false;
 
                         }
                     }
-                    if (filteredStones[stones].layerY <= this.layerY) {
-                        if (filteredStones[stones].layerY + filteredStones[stones].layerHeight >= this.layerY + this.layerHeight) {
+                    if (filteredStonelayers[stone].layerY <= this.layerY) {
+                        if (filteredStonelayers[stone].layerY + filteredStonelayers[stone].layerHeight >= this.layerY + this.layerHeight) {
                             this.checkedLayerY = false;
 
                         }
@@ -96,30 +96,32 @@ class StoneManager {
             }
 
             if (this.let == true) {
-                var stone = new Stones()
-                stone.layerX = this.layerX;
-                stone.layerY = this.layerY;
-                stone.layerWidth = this.layerWidth;
-                stone.layerHeight = this.layerHeight;
+                var stonelayer = new Stonelayer()
+                stonelayer.layerX = this.layerX;
+                stonelayer.layerY = this.layerY;
+                stonelayer.layerWidth = this.layerWidth;
+                stonelayer.layerHeight = this.layerHeight;
 
-                this.stones.push(stone);
+                this.stonelayers.push(stonelayer);
             }
             this.let = true;
+
+            this.stonelayers = this.stonelayers.filter(stone => stone.layerY >= - height / 4);
         }
     }
 
 
 
-    drawStones() {
-        for (let stone = 0; stone < this.stones.length; stone++) {
-            this.stones[stone].draw();
+    drawStonelayers() {
+        for (let stone = 0; stone < this.stonelayers.length; stone++) {
+            this.stonelayers[stone].draw();
         }
     }
 
     moveStone(timeBetweenDraw) {
-        for (let stone = 0; stone < this.stones.length; stone++) {
-            this.stones[stone].layerX -= 7 / 12 * width / 3000 * timeBetweenDraw;
-            this.stones[stone].layerY -= 7 / 12 * height / 3000 * timeBetweenDraw;
+        for (let stone = 0; stone < this.stonelayers.length; stone++) {
+            this.stonelayers[stone].layerX -= 7 / 12 * width / 3000 * timeBetweenDraw;
+            this.stonelayers[stone].layerY -= 7 / 12 * height / 3000 * timeBetweenDraw;
         }
     }
 }

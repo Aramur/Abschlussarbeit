@@ -1,4 +1,4 @@
-class Stones {
+class Stonelayer {
     layerX;
     layerY;
     layerWidth;
