@@ -11,10 +11,10 @@ class StonelayerManager {
     let = true;
 
     letStonelayers(timeBetweenDraw) {
-        if (Helper.getRandomInt(1, timeBetweenDraw) == 1) {
+        if (Helper.getRandomInt(1, timeBetweenDraw * 2) == 1) {
             this.layerWidth = Helper.getRandomInt(height / 12, height / 5);
             this.layerHeight = Helper.getRandomInt(height / 8, height / 4);
-            this.layerX = width + 200;
+            this.layerX = width - 500;
 
             var filteredChasms = chasmManager.chasms.filter(chasm => chasm.x2 >= this.layerX);
             filteredChasms = filteredChasms.filter(chasm => chasm.x1 <= this.layerX);
@@ -30,7 +30,7 @@ class StonelayerManager {
             var chasmPoint1 = 0;
             for (let chasm = 0; chasm < filteredChasms.length; chasm++) {
                 if (filteredChasms[chasm].x1 >= this.layerX) {
-                    if (filteredChasms[chasm].y1 <= chasmPoint1) {
+                    if (filteredChasms[chasm].y1 >= chasmPoint1) {
                         chasmPoint1 = filteredChasms[chasm].y1;
                     }
                 }
@@ -46,7 +46,7 @@ class StonelayerManager {
             if (filteredChasms.length >= 1) {
                 var chasmWidth = filteredChasms[0].x2 - filteredChasms[0].x1;
                 var chasmHeight = filteredChasms[0].y2 - filteredChasms[0].y1;
-                var littleWidth = this.layerX - filteredChasms[0].x1;
+                var littleWidth = this.layerX + this.layerWidth - filteredChasms[0].x1;
                 var chasmPoint2 = filteredChasms[0].y1 + littleWidth / chasmWidth * chasmHeight;
             }
 
@@ -58,8 +58,8 @@ class StonelayerManager {
 
             var firLine = 0;
             for (let fir = 0; fir < filteredForest.length; fir++) {
-                if (filteredForest[fir].y >= firLine) {
-                    firLine = filteredForest[fir].y;
+                if (filteredForest[fir].y + height / 8 >= firLine) {
+                    firLine = filteredForest[fir].y + 300 / 2560 * height;
                 }
             }
 

@@ -41,11 +41,12 @@ function draw() {
     chasmManager.moveChasm(timeBetweenDraw);
     firManager.letForest();
     firManager.moveForest(timeBetweenDraw);
+    stonelayerManager.letStonelayers(timeBetweenDraw);
+    stonelayerManager.moveStone(timeBetweenDraw);
     chasmManager.drawChasms();
     skier.drawSkier();
     firManager.drawForest();
-    stonelayerManager.letStonelayers(timeBetweenDraw);
-    stonelayerManager.moveStone(timeBetweenDraw);
+
     stonelayerManager.drawStonelayers();
   }
 
