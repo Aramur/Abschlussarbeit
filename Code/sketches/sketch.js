@@ -3,6 +3,7 @@ var firManager = new FirManager();
 var skierHitbox = new SkierHitbox();
 var skier = new Skier();
 var stonelayerManager = new StonelayerManager();
+var stoneManager = new StoneManager();
 var play = true;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
@@ -42,16 +43,20 @@ function draw() {
     firManager.letForest();
     firManager.moveForest(timeBetweenDraw);
     stonelayerManager.letStonelayers(timeBetweenDraw);
-    stonelayerManager.moveStone(timeBetweenDraw);
+    stoneManager.letStones();
+    stonelayerManager.moveStoneLayers(timeBetweenDraw);
+    stoneManager.moveStones(timeBetweenDraw);
     chasmManager.drawChasms();
+    stoneManager.drawStones();
     skier.drawSkier();
     firManager.drawForest();
 
-    stonelayerManager.drawStonelayers();
   }
 
 
   if (fpsDisplayed) {
+    stonelayerManager.drawStonelayers();
+
     fill(255);
     text(Math.round(frameRate()), width / 20, height - height / 20);
 

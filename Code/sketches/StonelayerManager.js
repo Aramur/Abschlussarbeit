@@ -10,11 +10,17 @@ class StonelayerManager {
     checkedLayerY;
     let = true;
 
+    drawStonelayers() {
+        for (let stone = 0; stone < this.stonelayers.length; stone++) {
+            this.stonelayers[stone].draw();
+        }
+    }
+
     letStonelayers(timeBetweenDraw) {
         if (Helper.getRandomInt(1, timeBetweenDraw * 2) == 1) {
             this.layerWidth = Helper.getRandomInt(height / 12, height / 5);
             this.layerHeight = Helper.getRandomInt(height / 8, height / 4);
-            this.layerX = width - 500;
+            this.layerX = width - height / 4;
 
             var filteredChasms = chasmManager.chasms.filter(chasm => chasm.x2 >= this.layerX);
             filteredChasms = filteredChasms.filter(chasm => chasm.x1 <= this.layerX);
@@ -105,20 +111,11 @@ class StonelayerManager {
                 this.stonelayers.push(stonelayer);
             }
             this.let = true;
-
-            this.stonelayers = this.stonelayers.filter(stone => stone.layerY >= - height / 4);
         }
+        this.stonelayers = this.stonelayers.filter(stone => stone.layerY >= - height / 4);
     }
 
-
-
-    drawStonelayers() {
-        for (let stone = 0; stone < this.stonelayers.length; stone++) {
-            this.stonelayers[stone].draw();
-        }
-    }
-
-    moveStone(timeBetweenDraw) {
+    moveStoneLayers(timeBetweenDraw) {
         for (let stone = 0; stone < this.stonelayers.length; stone++) {
             this.stonelayers[stone].layerX -= 7 / 12 * width / 3000 * timeBetweenDraw;
             this.stonelayers[stone].layerY -= 7 / 12 * height / 3000 * timeBetweenDraw;
