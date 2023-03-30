@@ -55,7 +55,7 @@ function draw() {
 
 
   if (fpsDisplayed) {
-    stonelayerManager.drawStonelayers();
+    //stonelayerManager.drawStonelayers();
 
     fill(255);
     text(Math.round(frameRate()), width / 20, height - height / 20);

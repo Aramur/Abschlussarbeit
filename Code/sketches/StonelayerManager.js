@@ -18,8 +18,9 @@ class StonelayerManager {
 
     letStonelayers(timeBetweenDraw) {
         if (Helper.getRandomInt(1, timeBetweenDraw * 2) == 1) {
-            this.layerWidth = Helper.getRandomInt(height / 12, height / 5);
-            this.layerHeight = Helper.getRandomInt(height / 8, height / 4);
+            var size = Helper.getRandomInt(1000, 600) / 100;
+            this.layerWidth = height / size;
+            this.layerHeight = width / size;
             this.layerX = width - height / 4;
 
             var filteredChasms = chasmManager.chasms.filter(chasm => chasm.x2 >= this.layerX);
