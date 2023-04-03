@@ -14,6 +14,26 @@
 </head>
 
 <body>
+  <div id="scoreField">
+
+    <h4>Save Highscore</h4>
+
+    <div id="datainput">
+
+      <input placeholder="name" type="name" id="name" />
+
+    </div>
+    <div id="buttonContainer">
+
+      <button id="submit" onclick="saveHighscore()"> speichern </button>
+
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+  <script src="firebase.js"></script>
+
   <script src="sketches/Helper.js"></script>
   <script src="sketches/SkierHitbox.js"></script>
   <script src="sketches/Skier.js"></script>
