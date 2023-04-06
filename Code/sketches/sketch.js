@@ -4,7 +4,9 @@ var skierHitbox = new SkierHitbox();
 var skier = new Skier();
 var stonelayerManager = new StonelayerManager();
 var stoneManager = new StoneManager();
+var firebaseManager = new FirebaseManager();
 var play = true;
+var score = 0;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -28,6 +30,7 @@ function setup() {
   chasmManager.letFirstChasm();
   firManager.letFirstFir();
   skier.loadSkier();
+  firebaseManager.initialize();
 }
 
 function draw() {
@@ -51,27 +54,37 @@ function draw() {
     skier.drawSkier();
     firManager.drawForest();
 
-  }
-
-
-  if (fpsDisplayed) {
-    //stonelayerManager.drawStonelayers();
-
+    score += 1
     fill(255);
-    text(Math.round(frameRate()), width / 20, height - height / 20);
+    text(score, width * 19 / 20, height / 20);
 
-    stroke('black')
-    strokeWeight(10);
-    for (let points = 0; points <= 3; points++) {
-      point(skierHitbox.skierHitpoints[points].x, skierHitbox.skierHitpoints[points].y)
+
+    if (fpsDisplayed) {
+      //stonelayerManager.drawStonelayers();
+
+      fill(255);
+      text(Math.round(frameRate()), width / 20, height - height / 20);
+
+      stroke('black')
+      strokeWeight(10);
+      for (let points = 0; points <= 3; points++) {
+        point(skierHitbox.skierHitpoints[points].x, skierHitbox.skierHitpoints[points].y)
+      }
     }
-  }
 
-  timeOfLastDraw += timeBetweenDraw;
+    timeOfLastDraw += timeBetweenDraw;
+
+  }
+  else {
+    document.getElementById("home").style.zIndex = 1;
+  }
 }
 
 function keyTyped() {
-  if (key == 'f') {
+  if (key == '*') {
     fpsDisplayed = !fpsDisplayed;
   }
 }
+
+
+

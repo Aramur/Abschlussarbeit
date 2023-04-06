@@ -14,25 +14,31 @@
 </head>
 
 <body>
-  <div id="scoreField">
+  <div id="home" class="home">
+    <div id="scoreField">
 
-    <h4>Save Highscore</h4>
+      <h4 class="title">Speichere Highscore</h4>
 
-    <div id="datainput">
+      <div>
 
-      <input placeholder="name" type="name" id="name" />
+        <p class='info'>Name</p>
+        <input placeholder="Name" type="name" id="name" class="data" />
 
-    </div>
-    <div id="buttonContainer">
+        <p class="info">Score</p>
+        <p class="data"></p>
 
-      <button id="submit" onclick="saveHighscore()"> speichern </button>
+      </div>
+      <div id="buttonContainer">
 
+        <button id="submit"> speichern </button>
+
+      </div>
     </div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
-  <script src="firebase.js"></script>
+  <script src="firebaseManager.js"></script>
 
   <script src="sketches/Helper.js"></script>
   <script src="sketches/SkierHitbox.js"></script>

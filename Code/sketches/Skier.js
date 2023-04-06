@@ -48,8 +48,8 @@ class Skier {
     }
 
     calculateSkier(timeBetweenDraw) {
-        this.positionX -= 1 / 2 * windowHeight / (54000 / timeBetweenDraw) * this.rotation;
-        this.positionY += 2 / 3 * width / (54000 / timeBetweenDraw) * this.rotation;
+        this.positionX -= 7 / 12 * height / 3000 * timeBetweenDraw * this.rotation / 10;
+        this.positionY += 7 / 12 * width / 3000 * timeBetweenDraw * this.rotation / 10;
 
 
     }
