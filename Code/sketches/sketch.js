@@ -76,6 +76,13 @@ function draw() {
 
   }
   else {
+    document.getElementById("score").innerHTML = 'Score:' + score;
+    document.querySelectorAll('p').forEach(p => {
+      p.style.fontSize = height / 30 + 'px';
+    })
+    document.querySelectorAll('h4').forEach(p => {
+      p.style.fontSize = height / 30 + 'px';
+    })
     document.getElementById("home").style.zIndex = 1;
   }
 }

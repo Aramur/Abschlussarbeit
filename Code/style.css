@@ -5,6 +5,16 @@ body {
   background-color: rgb(31, 31, 31);
 }
 
+p {
+  margin: 0;
+  font-size: 10px;
+}
+
+h4 {
+  margin: 0;
+  font-size: 10px;
+}
+
 .home {
   position: absolute;
   z-index: -1;
@@ -16,17 +26,12 @@ body {
   /* opacity transparenz*/
 }
 
-.title {
-  margin-left: 10%;
-}
+.scoreField {
+  width: 20%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
 
-.info {
-  display: inline;
-}
-
-.data {
-  display: inline;
-  margin-right: 0%;
 }
 
 canvas {
