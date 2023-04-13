@@ -18,8 +18,8 @@ class StonelayerManager {
 
     letStonelayers(timeBetweenDraw) {
         if (Helper.getRandomInt(1, timeBetweenDraw * 2) == 1) {
-            var size = Helper.getRandomInt(1000, 600) / 100;
-            this.layerWidth = height / size;
+            var size = Helper.getRandomInt(1200, 800) / 100;
+            this.layerWidth = height / size * 2;
             this.layerHeight = width / size;
             this.layerX = width - height / 4;
 

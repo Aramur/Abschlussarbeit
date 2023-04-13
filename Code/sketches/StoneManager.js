@@ -13,16 +13,16 @@ class StoneManager {
             var thisLayer = stonelayerManager.stonelayers[layer];
             this.points = [
                 [
-                    thisLayer.layerX + Helper.getRandomInt(30, 40) / 100 * thisLayer.layerWidth,
-                    thisLayer.layerX + Helper.getRandomInt(85, 95) / 100 * thisLayer.layerWidth,
-                    thisLayer.layerX + Helper.getRandomInt(60, 70) / 100 * thisLayer.layerWidth,
-                    thisLayer.layerX + Helper.getRandomInt(5, 15) / 100 * thisLayer.layerWidth
+                    thisLayer.layerX + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerWidth,
+                    thisLayer.layerX + Helper.getRandomInt(87.3, 97.3) / 100 * thisLayer.layerWidth,
+                    thisLayer.layerX + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerWidth,
+                    thisLayer.layerX + Helper.getRandomInt(2.7, 12.7) / 100 * thisLayer.layerWidth
                 ],
                 [
                     thisLayer.layerY + Helper.getRandomInt(5, 15) / 100 * thisLayer.layerHeight,
-                    thisLayer.layerY + Helper.getRandomInt(30, 40) / 100 * thisLayer.layerHeight,
+                    thisLayer.layerY + Helper.getRandomInt(10, 20) / 100 * thisLayer.layerHeight,
                     thisLayer.layerY + Helper.getRandomInt(85, 95) / 100 * thisLayer.layerHeight,
-                    thisLayer.layerY + Helper.getRandomInt(60, 70) / 100 * thisLayer.layerHeight
+                    thisLayer.layerY + Helper.getRandomInt(80, 90) / 100 * thisLayer.layerHeight
                 ]
             ];
 
