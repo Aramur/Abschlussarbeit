@@ -4,9 +4,12 @@ var skierHitbox = new SkierHitbox();
 var skier = new Skier();
 var stonelayerManager = new StonelayerManager();
 var stoneManager = new StoneManager();
+var slalomManager = new SlalomManager();
 var firebaseManager = new FirebaseManager();
 var play = true;
 var score = 0;
+var meters = 0;
+var modus = 'stones';
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -27,6 +30,7 @@ function setup() {
   skierHitbox.pushHitboxes();
   Fir.loadImage();
   Skier.loadImage();
+  Slalom.loadImage();
   chasmManager.letFirstChasm();
   firManager.letFirstFir();
   skier.loadSkier();
@@ -37,6 +41,15 @@ function draw() {
   const timeBetweenDraw = Date.now() - timeOfLastDraw;
 
   if (play == true) {
+    if (meters > 50) {
+      if (Number.isInteger(meters / 500) == true) {
+        modus = 'change';
+      }
+      else if (Number.isInteger((meters - 50) / 500) == true) {
+        modus = 'slalom';
+      }
+    }
+
     background(220);
     skier.rotate(timeBetweenDraw);
     skier.calculateSkier(timeBetweenDraw);
@@ -46,18 +59,23 @@ function draw() {
     firManager.letForest();
     firManager.moveForest(timeBetweenDraw);
     stonelayerManager.letStonelayers(timeBetweenDraw);
-    stoneManager.letStones();
+    if (modus == 'stones') {
+      stoneManager.letStones();
+    }
+    else if (modus == 'slalom') {
+      slalomManager.letPoles();
+      slalomManager.drawPoles();
+    }
     stonelayerManager.moveStoneLayers(timeBetweenDraw);
     stoneManager.moveStones(timeBetweenDraw);
+    slalomManager.movePoles(timeBetweenDraw);
     chasmManager.drawChasms();
     stoneManager.drawStones();
     skier.drawSkier();
     firManager.drawForest();
 
-    score += 1
     fill(255);
-    text(score, width * 19 / 20, height / 20);
-
+    text(score, width * 9 / 10, height / 10);
 
     if (fpsDisplayed) {
       stonelayerManager.drawStonelayers();
@@ -72,8 +90,10 @@ function draw() {
       }
     }
 
-    timeOfLastDraw += timeBetweenDraw;
+    score += 1;
+    meters += 1;
 
+    timeOfLastDraw += timeBetweenDraw;
   }
   else {
     document.getElementById("score").innerHTML = 'Score:' + score;
@@ -92,6 +112,3 @@ function keyTyped() {
     fpsDisplayed = !fpsDisplayed;
   }
 }
-
-
-

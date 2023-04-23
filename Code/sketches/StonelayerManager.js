@@ -21,7 +21,7 @@ class StonelayerManager {
             var size = Helper.getRandomInt(1200, 800) / 100;
             this.layerWidth = height / size * 2;
             this.layerHeight = width / size;
-            this.layerX = width - height / 4;
+            this.layerX = width + height / 4;
 
             var filteredChasms = chasmManager.chasms.filter(chasm => chasm.x2 >= this.layerX);
             filteredChasms = filteredChasms.filter(chasm => chasm.x1 <= this.layerX);
