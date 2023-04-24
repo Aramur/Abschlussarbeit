@@ -24,6 +24,5 @@ class Slalom {
         else if (this.type == 'ziel') {
             image(Slalom.images[3], this.x, this.y, height / 3, height / 3);
         }
-
     }
 }

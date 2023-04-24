@@ -9,7 +9,7 @@ var firebaseManager = new FirebaseManager();
 var play = true;
 var score = 0;
 var meters = 0;
-var modus = 'stones';
+var modus = 'slalom';
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -64,14 +64,15 @@ function draw() {
     }
     else if (modus == 'slalom') {
       slalomManager.letPoles();
-      slalomManager.drawPoles();
     }
     stonelayerManager.moveStoneLayers(timeBetweenDraw);
     stoneManager.moveStones(timeBetweenDraw);
     slalomManager.movePoles(timeBetweenDraw);
     chasmManager.drawChasms();
     stoneManager.drawStones();
+    slalomManager.drawPoles('before');
     skier.drawSkier();
+    slalomManager.drawPoles('after');
     firManager.drawForest();
 
     fill(255);
