@@ -17,6 +17,16 @@ class SlalomManager {
 
             this.poles.push(pole);
         }
+        else if (this.poles.length == 10) {
+            if (this.poles[9].x <= width + height / 4) {
+                var pole = new Slalom();
+                pole.x = width + width / 2;
+                pole.y = Helper.getRandomInt(Helper.getYBoarderTop(width + height / 4) + height / 12, Helper.getYBoarderBottom(width + height / 4, 0) - height / 2);
+                pole.type = 'ziel';
+
+                this.poles.push(pole);
+            }
+        }
         var lastPole = this.poles[this.poles.length - 1];
         if (lastPole.x <= width + height / 4) {
             if (lastPole.type != 'ziel') {
@@ -50,29 +60,31 @@ class SlalomManager {
     drawPoles(timeing) {
         for (let pole = 0; pole < this.poles.length; pole++) {
             if (this.poles[pole].type == 'rot' || this.poles[pole].type == 'blue') {
-                var x1 = this.poles[pole].x + 27 / 640 * height / 4;
+                var x1 = this.poles[pole].x + 10 / 640 * height / 4;
                 var y1 = this.poles[pole].y + 632 / 640 * height / 4;
-                var x2 = this.poles[pole].x + 116 / 640 * height / 4;
-                var y2 = this.poles[pole].y + 443 / 640 * height / 4;
+                var x2 = this.poles[pole].x + 110 / 640 * height / 4;
+                var y2 = this.poles[pole].y + 438 / 640 * height / 4;
             }
             else if (this.poles[pole].type == 'start' || this.poles[pole].type == 'ziel') {
-                var x1 = this.poles[pole].x + 21 / 640 * height / 3;
-                var y1 = this.poles[pole].y + 593 / 640 * height / 3;
-                var x2 = this.poles[pole].x + 132 / 640 * height / 3;
-                var y2 = this.poles[pole].y + 334 / 640 * height / 3;
+                var x1 = this.poles[pole].x + 15 / 640 * height / 2;
+                var y1 = this.poles[pole].y + 590 / 640 * height / 2;
+                var x2 = this.poles[pole].x + 130 / 640 * height / 2;
+                var y2 = this.poles[pole].y + 335 / 640 * height / 2;
             }
             var a = (y2 - y1) / (x2 - x1);
             var b = y1 - (a * x1);
             var testY = a * (skier.positionX + 175 / 640 * height / 4) + b;
 
-            if (timeing == 'before')
-                if (testY >= skier.positionY) {
-                    this.poles[pole].draw();
+            if (timeing == 'before') {
+                if (testY >= skier.positionY + 175 / 640 * height / 4) {
+                    this.poles[pole].draw(this.transparency);
                 }
-            if (timeing == 'after')
-                if (testY <= skier.positionY) {
-                    this.poles[pole].draw();
+            }
+            if (timeing == 'after') {
+                if (testY <= skier.positionY + 175 / 640 * height / 4) {
+                    this.poles[pole].draw(this.transparency);
                 }
+            }
         }
     }
 

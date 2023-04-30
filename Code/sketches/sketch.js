@@ -5,11 +5,14 @@ var skier = new Skier();
 var stonelayerManager = new StonelayerManager();
 var stoneManager = new StoneManager();
 var slalomManager = new SlalomManager();
+var slalomLines = new SlalomLines();
 var firebaseManager = new FirebaseManager();
 var play = true;
 var score = 0;
 var meters = 0;
 var modus = 'slalom';
+var won = false;
+var wonCounter = 0;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -42,10 +45,10 @@ function draw() {
 
   if (play == true) {
     if (meters > 50) {
-      if (Number.isInteger(meters / 500) == true) {
+      if (Number.isInteger(meters / 1000) == true) {
         modus = 'change';
       }
-      else if (Number.isInteger((meters - 50) / 500) == true) {
+      else if (Number.isInteger((meters - 50) / 1000) == true) {
         modus = 'slalom';
       }
     }
@@ -58,16 +61,23 @@ function draw() {
     chasmManager.moveChasm(timeBetweenDraw);
     firManager.letForest();
     firManager.moveForest(timeBetweenDraw);
-    stonelayerManager.letStonelayers(timeBetweenDraw);
     if (modus == 'stones') {
+      stonelayerManager.letStonelayers(timeBetweenDraw);
       stoneManager.letStones();
+      meters++;
     }
     else if (modus == 'slalom') {
+      console.log(slalomManager.poles.length);
       slalomManager.letPoles();
+      slalomLines.calculateLine();
+    }
+    else if (modus == 'change') {
+      meters++;
     }
     stonelayerManager.moveStoneLayers(timeBetweenDraw);
     stoneManager.moveStones(timeBetweenDraw);
     slalomManager.movePoles(timeBetweenDraw);
+    slalomLines.drawLine();
     chasmManager.drawChasms();
     stoneManager.drawStones();
     slalomManager.drawPoles('before');
@@ -76,7 +86,16 @@ function draw() {
     firManager.drawForest();
 
     fill(255);
+    textSize(30)
     text(score, width * 9 / 10, height / 10);
+    if (won == true) {
+      text('+500', width * 9 / 10, height / 6);
+      wonCounter++;
+      if (wonCounter >= 50) {
+        won = false;
+        wonCounter = 0;
+      }
+    }
 
     if (fpsDisplayed) {
       stonelayerManager.drawStonelayers();
@@ -90,9 +109,7 @@ function draw() {
         point(skierHitbox.skierHitpoints[points].x, skierHitbox.skierHitpoints[points].y)
       }
     }
-
     score += 1;
-    meters += 1;
 
     timeOfLastDraw += timeBetweenDraw;
   }
