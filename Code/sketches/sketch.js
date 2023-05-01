@@ -8,9 +8,10 @@ var slalomManager = new SlalomManager();
 var slalomLines = new SlalomLines();
 var firebaseManager = new FirebaseManager();
 var play = true;
+var spawnSpeed = 2;
 var score = 0;
 var meters = 0;
-var modus = 'slalom';
+var modus = 'stones';
 var won = false;
 var wonCounter = 0;
 var timeOfLastDraw = Date.now();
@@ -67,7 +68,6 @@ function draw() {
       meters++;
     }
     else if (modus == 'slalom') {
-      console.log(slalomManager.poles.length);
       slalomManager.letPoles();
       slalomLines.calculateLine();
     }

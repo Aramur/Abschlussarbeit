@@ -27,13 +27,13 @@ class SlalomLines {
             this.y2 = pole.y + 330 / 640 * height / 2;
         }
 
-        if (skier.rotation > 0) {
-            var threeOrZero = 0;
-            var oneOrTwo = 2;
+        if (skier.rotation < 0) {
+            var oneOrThree = 0;
+            var zeroOrTwo = 2;
         }
         else {
-            var threeOrZero = 3;
-            var oneOrTwo = 1;
+            var oneOrThree = 3;
+            var zeroOrTwo = 1;
         }
 
         if (pole.type == 'rot' || pole.type == 'blau') {
@@ -50,9 +50,10 @@ class SlalomLines {
         }
         var a1 = (y21 - y11) / (x21 - x11);
         var b1 = y11 - (a1 * x11);
-        var testY = a1 * (skierHitbox.skierHitpoints[threeOrZero].x) + b1;
+        var testY = a1 * (skierHitbox.skierHitpoints[zeroOrTwo].x) + b1;
 
-        if (skierHitbox.skierHitpoints[threeOrZero].y >= testY) {
+        if (skierHitbox.skierHitpoints[zeroOrTwo].y >= testY) {
+            console.log('test')
             if (pole.type !== 'rot') {
                 var x12 = skierHitbox.skierHitpoints[0].x
                 var y12 = skierHitbox.skierHitpoints[0].y;
@@ -94,10 +95,11 @@ class SlalomLines {
                 }
             }
         }
-        if (skierHitbox.skierHitpoints[oneOrTwo].y >= testY && pole.type !== 'ziel') {
+        testY = a1 * (skierHitbox.skierHitpoints[oneOrThree].x) + b1;
+        if (skierHitbox.skierHitpoints[oneOrThree].y >= testY && pole.type !== 'ziel') {
             this.counter += 1
         }
-        else if (skierHitbox.skierHitpoints[oneOrTwo].y >= testY && pole.type == 'ziel') {
+        else if (skierHitbox.skierHitpoints[oneOrThree].y >= testY && pole.type == 'ziel') {
             score += 500;
             this.slalomEnd()
             won = true
@@ -125,5 +127,6 @@ class SlalomLines {
         this.counter = 0;
         slalomManager.poles = [];
         meters++;
+        spawnSpeed -= 0.1
     }
 }

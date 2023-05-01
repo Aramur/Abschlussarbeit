@@ -17,7 +17,7 @@ class StonelayerManager {
     }
 
     letStonelayers(timeBetweenDraw) {
-        if (Helper.getRandomInt(1, timeBetweenDraw * 2) == 1) {
+        if (Helper.getRandomInt(1, timeBetweenDraw * spawnSpeed) == 1) {
             var size = Helper.getRandomInt(1200, 800) / 100;
             this.layerWidth = height / size * 2;
             this.layerHeight = width / size;

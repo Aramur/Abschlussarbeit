@@ -17,11 +17,11 @@ class SlalomManager {
 
             this.poles.push(pole);
         }
-        else if (this.poles.length == 10) {
-            if (this.poles[9].x <= width + height / 4) {
+        else if (this.poles.length == 7) {
+            if (this.poles[6].x <= width + height / 4) {
                 var pole = new Slalom();
                 pole.x = width + width / 2;
-                pole.y = Helper.getRandomInt(Helper.getYBoarderTop(width + height / 4) + height / 12, Helper.getYBoarderBottom(width + height / 4, 0) - height / 2);
+                pole.y = Helper.getRandomInt(Helper.getYBoarderTop(width + height / 4) + height / 12, Helper.getYBoarderBottom(width + height / 4, 0));
                 pole.type = 'ziel';
 
                 this.poles.push(pole);
