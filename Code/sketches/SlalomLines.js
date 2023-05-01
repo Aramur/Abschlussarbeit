@@ -75,7 +75,7 @@ class SlalomLines {
             }
 
 
-            if (pole.type !== 'blue') {
+            if (pole.type !== 'blau') {
                 var x12 = skierHitbox.skierHitpoints[2].x
                 var y12 = skierHitbox.skierHitpoints[2].y;
                 var x22 = skierHitbox.skierHitpoints[3].x;
@@ -108,7 +108,7 @@ class SlalomLines {
 
     drawLine() {
         if (modus == 'slalom') {
-            strokeWeight(5)
+            strokeWeight(height / 125)
             var pole = slalomManager.poles[this.counter];
             if (pole.type == 'blau') {
                 stroke(12, 0, 198, 50);

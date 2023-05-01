@@ -20,8 +20,8 @@ class SlalomManager {
         else if (this.poles.length == 7) {
             if (this.poles[6].x <= width + height / 4) {
                 var pole = new Slalom();
-                pole.x = width + width / 2;
-                pole.y = Helper.getRandomInt(Helper.getYBoarderTop(width + height / 4) + height / 12, Helper.getYBoarderBottom(width + height / 4, 0));
+                pole.x = width * 1.5;
+                pole.y = Helper.getRandomInt(Helper.getYBoarderTop(width + width / 2) + height / 12, Helper.getYBoarderBottom(width * 1.5, 0) - height / 2);
                 pole.type = 'ziel';
 
                 this.poles.push(pole);
@@ -34,15 +34,21 @@ class SlalomManager {
                 var y;
                 var type;
 
+                if (Helper.getYBoarderTop(lastPole.x) + height / 6 >= lastPole.y) {
+                    x = lastPole.x + width / 4;
+                }
+                else if (Helper.getYBoarderBottom(lastPole.x, 0) - height / 3 <= lastPole.y) {
+                    x = lastPole.x + width / 4;
+                }
+
                 if (lastPole.type == 'rot') {
                     type = 'blau'
-                    y = lastPole.y - 0.57735 * (x - lastPole.x); //Helper.getRandomInt(Helper.getYBoarderTop(lastPole.x + 120 / 640 * height / 4) + height / 12, lastPole.y + (443 - 640) / 640 * height / 4);
+                    y = lastPole.y - 0.57735 * (x - lastPole.x);
                 }
                 if (lastPole.type == 'blau') {
                     type = 'rot'
-                    y = lastPole.y + 0.57735 * (x - lastPole.x); //y = Helper.getRandomInt(lastPole.y + (632 + 640) / 640 * height / 4, Helper.getYBoarderBottom(lastPole.x + 30 / 640 * height / 4, 0) - height / 6);
+                    y = lastPole.y + 0.57735 * (x - lastPole.x);
                 }
-
                 y += (x - lastPole.x) * height / width;
                 x += width / 10;
                 y += height / 10;
@@ -59,7 +65,7 @@ class SlalomManager {
 
     drawPoles(timeing) {
         for (let pole = 0; pole < this.poles.length; pole++) {
-            if (this.poles[pole].type == 'rot' || this.poles[pole].type == 'blue') {
+            if (this.poles[pole].type == 'rot' || this.poles[pole].type == 'blau') {
                 var x1 = this.poles[pole].x + 10 / 640 * height / 4;
                 var y1 = this.poles[pole].y + 632 / 640 * height / 4;
                 var x2 = this.poles[pole].x + 110 / 640 * height / 4;

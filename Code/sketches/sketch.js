@@ -39,6 +39,11 @@ function setup() {
   firManager.letFirstFir();
   skier.loadSkier();
   firebaseManager.initialize();
+
+  for (times = 0; times <= 20; times++) {
+    chasmManager.letChasm();
+    firManager.letForest();
+  }
 }
 
 function draw() {
@@ -86,7 +91,7 @@ function draw() {
     firManager.drawForest();
 
     fill(255);
-    textSize(30)
+    textSize(height / 20)
     text(score, width * 9 / 10, height / 10);
     if (won == true) {
       text('+500', width * 9 / 10, height / 6);
