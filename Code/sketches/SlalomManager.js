@@ -83,12 +83,12 @@ class SlalomManager {
 
             if (timeing == 'before') {
                 if (testY >= skier.positionY + 175 / 640 * height / 4) {
-                    this.poles[pole].draw(this.transparency);
+                    this.poles[pole].draw();
                 }
             }
             if (timeing == 'after') {
                 if (testY <= skier.positionY + 175 / 640 * height / 4) {
-                    this.poles[pole].draw(this.transparency);
+                    this.poles[pole].draw();
                 }
             }
         }
