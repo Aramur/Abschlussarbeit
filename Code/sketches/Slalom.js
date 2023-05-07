@@ -5,7 +5,7 @@ class Slalom {
     type;
 
     static loadImage() {
-        Slalom.images.push(loadImage('pictures/start.png'));
+        Slalom.images.push(loadImage('pictures/Start.png'));
         Slalom.images.push(loadImage('pictures/Torrot.png'));
         Slalom.images.push(loadImage('pictures/Torblau.png'));
         Slalom.images.push(loadImage('pictures/ziel.png'));

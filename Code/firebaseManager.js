@@ -13,6 +13,7 @@ class FirebaseManager {
     initialize() {
         this.initializeFirebase();
         this.initializeSaveButton();
+        this.initializeScoreboardsLoading();
     }
 
     initializeFirebase() {
@@ -38,12 +39,28 @@ class FirebaseManager {
         })
     }
 
-    getHighscore(scoreNumber) {
+    initializeScoreboardsLoading() {
+        var ref = this.database.ref("highscores")
 
-        var userRef = database.ref('highscores/' + scoreNumber)
-        userRef.on('value', function (snapshot) {
-            var data = snapshot.val()
-            return data
-        })
+        var self = this;
+
+        ref.on('value', function (snapshot) {
+            var highscores = [];
+            snapshot.forEach(function (childSnapshot) {
+                var key = childSnapshot.key;
+                var highscore = childSnapshot.val();
+                highscores.push({
+                    key: key,
+                    name: highscore.name,
+                    score: highscore.score
+                });
+            });
+
+            self.actualiseScoreboards(highscores);
+        });
+    }
+
+    actualiseScoreboards(highscores) {
+        console.log(highscores)
     }
 }

@@ -15,6 +15,7 @@ var meters = 0;
 var modus = 'stones';
 var won = false;
 var wonCounter = 0;
+var transparence = 0;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -88,12 +89,6 @@ function draw() {
 
       fill(255);
       text(Math.round(frameRate()), width / 20, height - height / 20);
-
-      stroke('black')
-      strokeWeight(10);
-      for (let points = 0; points <= 3; points++) {
-        point(skierHitbox.skierHitpoints[points].x, skierHitbox.skierHitpoints[points].y)
-      }
     }
     score += 1;
     document.getElementById("home").style.zIndex = -1;
@@ -117,15 +112,25 @@ function draw() {
     }
   }
   if (play == false) {
+    if (transparence <= 255) {
+      transparence += 0.5;
+    }
+    background(220, transparence)
     snowflakeManager.letSnowflakes(timeBetweenDraw);
     snowflakeManager.drawSnowflakes(timeBetweenDraw);
 
     document.getElementById("score").innerHTML = 'Score:' + score;
     document.querySelectorAll('p').forEach(p => {
-      p.style.fontSize = height / 30 + 'px';
+      p.style.fontSize = height / 25 + 'px';
     })
-    document.querySelectorAll('h4').forEach(p => {
-      p.style.fontSize = height / 30 + 'px';
+    document.querySelectorAll('h4').forEach(h4 => {
+      h4.style.fontSize = height / 25 + 'px';
+    })
+    document.querySelectorAll('button').forEach(button => {
+      button.style.fontSize = height / 35 + 'px';
+    })
+    document.querySelectorAll('input').forEach(input => {
+      input.style.fontSize = height / 35 + 'px';
     })
     document.getElementById("home").style.zIndex = 1;
   }
