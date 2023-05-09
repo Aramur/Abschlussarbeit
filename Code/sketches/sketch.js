@@ -113,7 +113,7 @@ function draw() {
   }
   if (play == false) {
     if (transparence <= 255) {
-      transparence += 0.5;
+      transparence += 1;
     }
     background(220, transparence)
     snowflakeManager.letSnowflakes(timeBetweenDraw);
@@ -122,6 +122,9 @@ function draw() {
     document.getElementById("score").innerHTML = 'Score:' + score;
     document.querySelectorAll('p').forEach(p => {
       p.style.fontSize = height / 25 + 'px';
+    })
+    document.querySelectorAll('li').forEach(li => {
+      li.style.fontSize = height / 25 + 'px';
     })
     document.querySelectorAll('h4').forEach(h4 => {
       h4.style.fontSize = height / 25 + 'px';

@@ -61,6 +61,79 @@ class FirebaseManager {
     }
 
     actualiseScoreboards(highscores) {
+        var list = this.getHighestScores(highscores);
+        this.fillIntoList(list, "alltimeHighscores")
+        highscores = highscores.filter(highscore => highscore.key >= Date.now() - 2678400000)
         console.log(highscores)
+        var list = this.getHighestScores(highscores);
+        this.fillIntoList(list, "monthlyHighscores")
+        highscores = highscores.filter(highscore => highscore.key >= Date.now() - 604800000)
+        var list = this.getHighestScores(highscores);
+        this.fillIntoList(list, "weeklyHighscores")
+        highscores = highscores.filter(highscore => highscore.key >= Date.now() - 86400000)
+        var list = this.getHighestScores(highscores);
+        this.fillIntoList(list, 'dailyHighscores')
+
+    }
+
+    getHighestScores(highscores) {
+        var score1 = 0;
+        var score2 = 0;
+        var score3 = 0;
+        var score4 = 0;
+        var score5 = 0;
+        for (let scores = 0; scores < highscores.length; scores++) {
+            var score = highscores[scores].score;
+            if (score >= score5) {
+                if (score >= score4) {
+                    if (score >= score3) {
+                        if (score >= score2) {
+                            if (score >= score1) {
+                                score5 = score4;
+                                score4 = score3;
+                                score3 = score2;
+                                score2 = score1;
+                                score1 = score;
+                            }
+                            else {
+                                score5 = score4;
+                                score4 = score3;
+                                score3 = score2;
+                                score2 = score;
+                            }
+                        }
+                        else {
+                            score5 = score4;
+                            score4 = score3;
+                            score3 = score;
+                        }
+                    }
+                    else {
+                        score5 = score4;
+                        score4 = score;
+                    }
+                }
+                else {
+                    score5 = score;
+                }
+            }
+        }
+        var list = [highscores.filter(highscore => highscore.score == score1), highscores.filter(highscore => highscore.score == score2), highscores.filter(highscore => highscore.score == score3), highscores.filter(highscore => highscore.score == score4), highscores.filter(highscore => highscore.score == score5)];
+        return list
+    }
+
+    fillIntoList(list, element) {
+        console.log(list)
+        var ul = document.getElementById(element);
+        for (var i = 0; i < 5; i++) {
+            var li = document.createElement("li");
+            if (list[i].length == 0) {
+                li.textContent = '-';
+            }
+            else {
+                li.textContent = list[i][0].name + list[i][0].score;
+            }
+            ul.appendChild(li);
+        }
     }
 }
