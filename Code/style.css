@@ -33,14 +33,6 @@ h4 {
   flex-direction: column;
 }
 
-.buttoncontainer {
-  margin: 0;
-}
-
-.scoreboard {
-  width: 15%;
-}
-
 canvas {
   display: block;
   position: absolute;

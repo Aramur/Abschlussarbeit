@@ -121,16 +121,16 @@ function draw() {
 
     document.getElementById("score").innerHTML = 'Score:' + score;
     document.querySelectorAll('p').forEach(p => {
-      p.style.fontSize = height / 25 + 'px';
+      p.style.fontSize = height / 20 + 'px';
     })
-    document.querySelectorAll('li').forEach(li => {
-      li.style.fontSize = height / 25 + 'px';
+    document.querySelectorAll('td').forEach(td => {
+      td.style.fontSize = height / 20 + 'px';
     })
     document.querySelectorAll('h4').forEach(h4 => {
-      h4.style.fontSize = height / 25 + 'px';
+      h4.style.fontSize = height / 20 + 'px';
     })
     document.querySelectorAll('button').forEach(button => {
-      button.style.fontSize = height / 35 + 'px';
+      button.style.fontSize = height / 30 + 'px';
     })
     document.querySelectorAll('input').forEach(input => {
       input.style.fontSize = height / 35 + 'px';

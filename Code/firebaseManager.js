@@ -61,18 +61,23 @@ class FirebaseManager {
     }
 
     actualiseScoreboards(highscores) {
+        for (let i = 0; i < 4; i++) {
+            var table = document.getElementById("table" + i);
+            while (table.rows.length > 0) {
+                table.deleteRow(table.rows.length - 1);
+            }
+        }
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, "alltimeHighscores")
+        this.fillIntoList(list, "table0")
         highscores = highscores.filter(highscore => highscore.key >= Date.now() - 2678400000)
-        console.log(highscores)
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, "monthlyHighscores")
+        this.fillIntoList(list, "table1")
         highscores = highscores.filter(highscore => highscore.key >= Date.now() - 604800000)
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, "weeklyHighscores")
+        this.fillIntoList(list, "table2")
         highscores = highscores.filter(highscore => highscore.key >= Date.now() - 86400000)
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, 'dailyHighscores')
+        this.fillIntoList(list, 'table3')
 
     }
 
@@ -123,17 +128,25 @@ class FirebaseManager {
     }
 
     fillIntoList(list, element) {
-        console.log(list)
-        var ul = document.getElementById(element);
+        var table = document.getElementById(element);
         for (var i = 0; i < 5; i++) {
-            var li = document.createElement("li");
+            var tr = document.createElement("tr");
+            table.appendChild(tr);
+            var td = document.createElement("td");
             if (list[i].length == 0) {
-                li.textContent = '-';
+                td.textContent = '-';
             }
             else {
-                li.textContent = list[i][0].name + list[i][0].score;
+                td.textContent = list[i][0].score;
             }
-            ul.appendChild(li);
+            tr.appendChild(td);
+            td = document.createElement("td");
+            if (list[i].length == 0) {
+            }
+            else {
+                td.textContent = list[i][0].name;
+            }
+            tr.appendChild(td);
         }
     }
 }
