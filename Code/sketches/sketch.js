@@ -34,6 +34,7 @@ function setup() {
   let cnv = createCanvas(windowWidth - canvasWidthDisplacement, windowHeight - canvasHeightDisplacement);
   cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
 
+  htmlCommunication.initializeButtons();
   skierHitbox.pushHitboxes();
   Snowflakes.loadImage();
   Fir.loadImage();
@@ -43,17 +44,16 @@ function setup() {
   firManager.letFirstFir();
   skier.loadSkier();
   firebaseManager.initialize();
-
-  for (times = 0; times <= 20; times++) {
-    chasmManager.letChasm();
-    firManager.letForest();
-  }
 }
 
 function draw() {
   const timeBetweenDraw = Date.now() - timeOfLastDraw;
   background(220);
   if (play == true) {
+    if (transparence > 0) {
+      transparence -= 1;
+    }
+
     if (meters > 50) {
       if (Number.isInteger(meters / 1000) == true) {
         modus = 'change';
@@ -62,6 +62,7 @@ function draw() {
         modus = 'slalom';
       }
     }
+
     skier.rotate(timeBetweenDraw);
     skier.calculateSkier(timeBetweenDraw);
     skierHitbox.calculateSkierHitboxes();
@@ -69,18 +70,22 @@ function draw() {
     chasmManager.moveChasm(timeBetweenDraw);
     firManager.letForest();
     firManager.moveForest(timeBetweenDraw);
+
     if (modus == 'stones') {
       stonelayerManager.letStonelayers(timeBetweenDraw);
       stoneManager.letStones();
       meters++;
     }
+
     else if (modus == 'slalom') {
       slalomManager.letPoles();
       slalomLines.calculateLine();
     }
+
     else if (modus == 'change') {
       meters++;
     }
+
     stonelayerManager.moveStoneLayers(timeBetweenDraw);
     stoneManager.moveStones(timeBetweenDraw);
     slalomManager.movePoles(timeBetweenDraw);
@@ -91,8 +96,10 @@ function draw() {
       fill(255);
       text(Math.round(frameRate()), width / 20, height - height / 20);
     }
+
     score += 1;
   }
+
   slalomLines.drawLine();
   chasmManager.drawChasms();
   stoneManager.drawStones();
@@ -100,6 +107,7 @@ function draw() {
   skier.drawSkier();
   slalomManager.drawPoles('after');
   firManager.drawForest();
+
   fill(255);
   textSize(height / 20)
   text(score, width * 9 / 10, height / 10);
@@ -111,15 +119,16 @@ function draw() {
       wonCounter = 0;
     }
   }
+
   if (play == false) {
     if (transparence <= 255) {
       transparence += 1;
       document.getElementById('home').style.opacity = 0.003921568627451 * transparence;
     }
-    background(220, transparence)
     snowflakeManager.letSnowflakes(timeBetweenDraw);
-    snowflakeManager.drawSnowflakes(timeBetweenDraw);
   }
+  background(220, transparence)
+  snowflakeManager.drawSnowflakes(timeBetweenDraw);
 
   timeOfLastDraw += timeBetweenDraw;
 }

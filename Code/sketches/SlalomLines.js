@@ -1,5 +1,5 @@
 class SlalomLines {
-    x1 = 0;
+    x1;
     y1;
     x2;
     y2;
@@ -53,7 +53,6 @@ class SlalomLines {
         var testY = a1 * (skierHitbox.skierHitpoints[zeroOrTwo].x) + b1;
 
         if (skierHitbox.skierHitpoints[zeroOrTwo].y >= testY) {
-            console.log('test')
             if (pole.type !== 'rot') {
                 var x12 = skierHitbox.skierHitpoints[0].x
                 var y12 = skierHitbox.skierHitpoints[0].y;

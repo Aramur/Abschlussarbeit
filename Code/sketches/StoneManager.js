@@ -87,7 +87,7 @@ class StoneManager {
                         }
                     }
                 }
-                if (play = false) {
+                if (play == false) {
                     htmlCommunication.lostGame();
                 }
             }

@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-color: rgb(31, 31, 31);
   color: rgb(31, 31, 31);
+  font-family: Helvetica;
 }
 
 p {
@@ -33,9 +34,16 @@ h4 {
 }
 
 .scoreField {
-  width: 20%;
+  width: 22%;
   display: flex;
   flex-direction: column;
+}
+
+.startButtonContainer {
+  width: 22%;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .freeride {

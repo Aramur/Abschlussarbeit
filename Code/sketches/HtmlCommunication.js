@@ -1,4 +1,18 @@
 class HtmlCommunication {
+    initializeButtons() {
+        var self = this;
+        document.getElementById("save").addEventListener("click", function () {
+            firebaseManager.saveHighscore();
+            self.replaceToStart();
+        })
+        document.getElementById('notsave').addEventListener('click', function () {
+            self.replaceToStart();
+        })
+        document.getElementById('startButton').addEventListener('click', function () {
+            self.startGame();
+        })
+    }
+
     lostGame() {
         document.getElementById("score").innerHTML = 'Score:' + score;
         document.querySelectorAll('p').forEach(p => {
@@ -18,6 +32,7 @@ class HtmlCommunication {
         })
         document.getElementById('img').height = height / 1.4;
         document.getElementById('img').width = height / 1.4;
+        document.getElementById('startButton').style.fontSize = height / 20 + 'px';
         document.getElementById("home").style.zIndex = 1;
     }
 
@@ -42,5 +57,38 @@ class HtmlCommunication {
             }
             tr.appendChild(td);
         }
+    }
+
+    replaceToStart() {
+        document.getElementById('scoreField').style.display = 'none';
+        document.getElementById('startButtonContainer').style.display = 'flex';
+    }
+
+    startGame() {
+        skier.loadSkier();
+        skier.rotateCounter = 0;
+        skier.rotation = 0;
+        stonelayerManager.stonelayers = [];
+        stoneManager.stones = [];
+        chasmManager.chasms = [];
+        firManager.firs = [];
+        slalomManager.poles = [];
+        slalomLines.counter = 0;
+        spawnSpeed = 2;
+        score = 0;
+        meters = 0;
+        modus = 'stones';
+        won = false;
+        wonCounter = 0;
+        play = true;
+        chasmManager.letFirstChasm();
+        firManager.letFirstFir();
+        for (let times = 0; times <= 20; times++) {
+            chasmManager.letChasm();
+            firManager.letForest();
+        }
+        document.getElementById("home").style.zIndex = -1;
+        document.getElementById('scoreField').style.display = 'flex';
+        document.getElementById('startButtonContainer').style.display = 'none';
     }
 }

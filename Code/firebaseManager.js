@@ -12,20 +12,12 @@ class FirebaseManager {
 
     initialize() {
         this.initializeFirebase();
-        this.initializeSaveButton();
         this.initializeScoreboardsLoading();
     }
 
     initializeFirebase() {
         firebase.initializeApp(this.firebaseConfig);
         this.database = firebase.database()
-    }
-
-    initializeSaveButton() {
-        var self = this;
-        document.getElementById("submit").addEventListener("click", function () {
-            self.saveHighscore();
-        })
     }
 
     saveHighscore() {
