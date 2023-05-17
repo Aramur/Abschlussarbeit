@@ -15,37 +15,42 @@
 
 <body>
   <div id="home" class="home">
-    <div id="scoreboardLeft" class="scoreboard">
-
-      <h4>daily Highscores</h4>
-      <table id="table3"></table>
-      <br>
-      <h4>monthly Highscores</h4>
-      <table id="table1"></table>
-
+    <div class="freeride" id="freeride">
+      <img src="pictures/freeride.png" width="500" height='500' id="img">
     </div>
-    <div id="scoreField" class="scoreField">
+    <div class="scoreContainer">
+      <div id="scoreboardLeft" class="scoreboard">
 
-      <h4>Speichere Highscore</h4>
-
-      <input placeholder="Name" maxlength="8" type="name" id="name" class="data" />
-      <p class="data" id="score"></p>
-
-      <div id="buttonContainer">
-
-        <button id="submit"> speichern </button>
-        <button> verwerfen </button>
+        <h4>daily Highscores</h4>
+        <table id="table3"></table>
+        <br>
+        <h4>monthly Highscores</h4>
+        <table id="table1"></table>
 
       </div>
-    </div>
-    <div id="scoreboardRight" class="scoreboard">
+      <div id="scoreField" class="scoreField">
 
-      <h4>weekly Highscores</h4>
-      <table id="table2"></table>
-      <br>
-      <h4>alltime Highscores</h4>
-      <table id="table0"></table>
+        <h4>Speichere Highscore</h4>
 
+        <input placeholder="Name" maxlength="8" type="name" id="name" class="data" />
+        <p class="data" id="score"></p>
+
+        <div id="buttonContainer">
+
+          <button id="submit"> speichern </button>
+          <button> verwerfen </button>
+
+        </div>
+      </div>
+      <div id="scoreboardRight" class="scoreboard">
+
+        <h4>weekly Highscores</h4>
+        <table id="table2"></table>
+        <br>
+        <h4>alltime Highscores</h4>
+        <table id="table0"></table>
+
+      </div>
     </div>
   </div>
 
@@ -55,6 +60,7 @@
 
   <script src="sketches/SnowflakeManger.js"></script>
   <script src="sketches/Snowflakes.js"></script>
+  <script src="sketches/HtmlCommunication.js"></script>
   <script src="sketches/Helper.js"></script>
   <script src="sketches/SkierHitbox.js"></script>
   <script src="sketches/Skier.js"></script>

@@ -1,4 +1,5 @@
 var snowflakeManager = new SnowflakeManager();
+var htmlCommunication = new HtmlCommunication();
 var chasmManager = new ChasmManager();
 var firManager = new FirManager();
 var skierHitbox = new SkierHitbox();
@@ -91,7 +92,6 @@ function draw() {
       text(Math.round(frameRate()), width / 20, height - height / 20);
     }
     score += 1;
-    document.getElementById("home").style.zIndex = -1;
   }
   slalomLines.drawLine();
   chasmManager.drawChasms();
@@ -114,28 +114,11 @@ function draw() {
   if (play == false) {
     if (transparence <= 255) {
       transparence += 1;
+      document.getElementById('home').style.opacity = 0.003921568627451 * transparence;
     }
     background(220, transparence)
     snowflakeManager.letSnowflakes(timeBetweenDraw);
     snowflakeManager.drawSnowflakes(timeBetweenDraw);
-
-    document.getElementById("score").innerHTML = 'Score:' + score;
-    document.querySelectorAll('p').forEach(p => {
-      p.style.fontSize = height / 20 + 'px';
-    })
-    document.querySelectorAll('td').forEach(td => {
-      td.style.fontSize = height / 20 + 'px';
-    })
-    document.querySelectorAll('h4').forEach(h4 => {
-      h4.style.fontSize = height / 20 + 'px';
-    })
-    document.querySelectorAll('button').forEach(button => {
-      button.style.fontSize = height / 30 + 'px';
-    })
-    document.querySelectorAll('input').forEach(input => {
-      input.style.fontSize = height / 35 + 'px';
-    })
-    document.getElementById("home").style.zIndex = 1;
   }
 
   timeOfLastDraw += timeBetweenDraw;

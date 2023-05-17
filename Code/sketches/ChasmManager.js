@@ -74,6 +74,7 @@ class ChasmManager {
 
                 if (chasmPoint >= skierHitbox.skierHitpoints[points].y) {
                     play = false;
+                    htmlCommunication.lostGame();
                 }
             }
         }

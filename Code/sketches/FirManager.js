@@ -66,6 +66,7 @@ class FirManager {
             if (filteredForest.length >= 1) {
                 if (filteredForest[0].y + 550 / 2560 * height <= skierHitbox.skierHitpoints[points].y) {
                     play = false;
+                    htmlCommunication.lostGame();
                 }
             }
         }

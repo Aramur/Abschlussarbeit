@@ -87,6 +87,9 @@ class StoneManager {
                         }
                     }
                 }
+                if (play = false) {
+                    htmlCommunication.lostGame();
+                }
             }
         }
     }

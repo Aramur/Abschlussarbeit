@@ -31,11 +31,9 @@ class FirebaseManager {
     saveHighscore() {
         var name = document.getElementById('name').value
         var time = Date.now()
-
         this.database.ref('highscores/' + time).set({
             score: score,
             name: name,
-
         })
     }
 
@@ -68,16 +66,16 @@ class FirebaseManager {
             }
         }
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, "table0")
+        htmlCommunication.fillIntoList(list, "table0")
         highscores = highscores.filter(highscore => highscore.key >= Date.now() - 2678400000)
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, "table1")
+        htmlCommunication.fillIntoList(list, "table1")
         highscores = highscores.filter(highscore => highscore.key >= Date.now() - 604800000)
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, "table2")
+        htmlCommunication.fillIntoList(list, "table2")
         highscores = highscores.filter(highscore => highscore.key >= Date.now() - 86400000)
         var list = this.getHighestScores(highscores);
-        this.fillIntoList(list, 'table3')
+        htmlCommunication.fillIntoList(list, 'table3')
 
     }
 
@@ -125,28 +123,5 @@ class FirebaseManager {
         }
         var list = [highscores.filter(highscore => highscore.score == score1), highscores.filter(highscore => highscore.score == score2), highscores.filter(highscore => highscore.score == score3), highscores.filter(highscore => highscore.score == score4), highscores.filter(highscore => highscore.score == score5)];
         return list
-    }
-
-    fillIntoList(list, element) {
-        var table = document.getElementById(element);
-        for (var i = 0; i < 5; i++) {
-            var tr = document.createElement("tr");
-            table.appendChild(tr);
-            var td = document.createElement("td");
-            if (list[i].length == 0) {
-                td.textContent = '-';
-            }
-            else {
-                td.textContent = list[i][0].score;
-            }
-            tr.appendChild(td);
-            td = document.createElement("td");
-            if (list[i].length == 0) {
-            }
-            else {
-                td.textContent = list[i][0].name;
-            }
-            tr.appendChild(td);
-        }
     }
 }
