@@ -19,10 +19,10 @@ h4 {
 
 .home {
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  opacity: 0;
+  opacity: 256;
 }
 
 .scoreContainer {
@@ -35,13 +35,13 @@ h4 {
 
 .scoreField {
   width: 22%;
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
 .startButtonContainer {
   width: 22%;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
 }

@@ -13,8 +13,7 @@ class HtmlCommunication {
         })
     }
 
-    lostGame() {
-        document.getElementById("score").innerHTML = 'Score:' + score;
+    ResizeMenu() {
         document.querySelectorAll('p').forEach(p => {
             p.style.fontSize = height / 20 + 'px';
         })
@@ -30,10 +29,9 @@ class HtmlCommunication {
         document.querySelectorAll('input').forEach(input => {
             input.style.fontSize = height / 35 + 'px';
         })
+        document.getElementById('startButton').style.fontSize = height / 20 + 'px';
         document.getElementById('img').height = height / 1.4;
         document.getElementById('img').width = height / 1.4;
-        document.getElementById('startButton').style.fontSize = height / 20 + 'px';
-        document.getElementById("home").style.zIndex = 1;
     }
 
     fillIntoList(list, element) {
@@ -57,6 +55,11 @@ class HtmlCommunication {
             }
             tr.appendChild(td);
         }
+    }
+
+    lostGame() {
+        document.getElementById("score").innerHTML = 'Score:' + score;
+        document.getElementById("home").style.zIndex = 1;
     }
 
     replaceToStart() {
@@ -88,6 +91,7 @@ class HtmlCommunication {
             firManager.letForest();
         }
         document.getElementById("home").style.zIndex = -1;
+        document.getElementById('home').style.opacity = 0;
         document.getElementById('scoreField').style.display = 'flex';
         document.getElementById('startButtonContainer').style.display = 'none';
     }

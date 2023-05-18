@@ -47,6 +47,7 @@ class FirebaseManager {
             });
 
             self.actualiseScoreboards(highscores);
+            htmlCommunication.ResizeMenu()
         });
     }
 

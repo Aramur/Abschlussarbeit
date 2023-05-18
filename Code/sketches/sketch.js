@@ -9,14 +9,14 @@ var stoneManager = new StoneManager();
 var slalomManager = new SlalomManager();
 var slalomLines = new SlalomLines();
 var firebaseManager = new FirebaseManager();
-var play = true;
+var play = false;
 var spawnSpeed = 2;
 var score = 0;
 var meters = 0;
 var modus = 'stones';
 var won = false;
 var wonCounter = 0;
-var transparence = 0;
+var transparence = 256;
 var timeOfLastDraw = Date.now();
 var fpsDisplayed = false;
 var canvasHeightDisplacement = 0;
@@ -40,10 +40,9 @@ function setup() {
   Fir.loadImage();
   Skier.loadImage();
   Slalom.loadImage();
-  chasmManager.letFirstChasm();
-  firManager.letFirstFir();
-  skier.loadSkier();
+  firManager.letFirstFir()
   firebaseManager.initialize();
+  htmlCommunication.ResizeMenu()
 }
 
 function draw() {
@@ -89,14 +88,6 @@ function draw() {
     stonelayerManager.moveStoneLayers(timeBetweenDraw);
     stoneManager.moveStones(timeBetweenDraw);
     slalomManager.movePoles(timeBetweenDraw);
-
-    if (fpsDisplayed) {
-      stonelayerManager.drawStonelayers();
-
-      fill(255);
-      text(Math.round(frameRate()), width / 20, height - height / 20);
-    }
-
     score += 1;
   }
 
@@ -125,12 +116,18 @@ function draw() {
       transparence += 1;
       document.getElementById('home').style.opacity = 0.003921568627451 * transparence;
     }
-    snowflakeManager.letSnowflakes(timeBetweenDraw);
+    snowflakeManager.letSnowflakes();
   }
   background(220, transparence)
   snowflakeManager.drawSnowflakes(timeBetweenDraw);
 
   timeOfLastDraw += timeBetweenDraw;
+
+  if (fpsDisplayed) {
+    stonelayerManager.drawStonelayers();
+    fill(255);
+    text(Math.round(frameRate()), width / 20, height - height / 20);
+  }
 }
 
 function keyTyped() {
