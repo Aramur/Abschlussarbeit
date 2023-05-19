@@ -5,6 +5,8 @@ class Skier {
     rotation = 0;
     positionX = 0;
     positionY = 0;
+    playbuttonRight = false;
+    playbuttonLeft = false;
 
     static loadImage() {
         Skier.images.push(loadImage('pictures/skier-6.png'));
@@ -29,13 +31,13 @@ class Skier {
 
     rotate(timeBetweenDraw) {
         if (this.rotateCounter >= 0.03 * timeBetweenDraw) {
-            if (keyIsDown(LEFT_ARROW)) {
+            if (keyIsDown(LEFT_ARROW) || this.playbuttonLeft == true) {
                 if (skier.rotation <= 5) {
                     skier.rotation += 1;
                 }
 
             }
-            if (keyIsDown(RIGHT_ARROW)) {
+            if (keyIsDown(RIGHT_ARROW) || this.playbuttonRight == true) {
                 if (skier.rotation >= -5) {
                     skier.rotation -= 1;
                 }

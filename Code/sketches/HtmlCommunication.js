@@ -11,6 +11,18 @@ class HtmlCommunication {
         document.getElementById('startButton').addEventListener('click', function () {
             self.startGame();
         })
+        document.getElementById('playbuttonLeft').addEventListener('mousedown', function () {
+            skier.playbuttonLeft = true;
+        })
+        document.getElementById('playbuttonLeft').addEventListener('click', function () {
+            skier.playbuttonLeft = false;
+        })
+        document.getElementById('playbuttonRight').addEventListener('mousedown', function () {
+            skier.playbuttonRight = true;
+        })
+        document.getElementById('playbuttonRight').addEventListener('click', function () {
+            skier.playbuttonRight = false;
+        })
     }
 
     ResizeMenu() {
@@ -23,12 +35,11 @@ class HtmlCommunication {
         document.querySelectorAll('h4').forEach(h4 => {
             h4.style.fontSize = height / 20 + 'px';
         })
-        document.querySelectorAll('button').forEach(button => {
-            button.style.fontSize = height / 30 + 'px';
-        })
         document.querySelectorAll('input').forEach(input => {
             input.style.fontSize = height / 35 + 'px';
         })
+        document.getElementById('save').style.fontSize = height / 30 + 'px';
+        document.getElementById('notsave').style.fontSize = height / 30 + 'px';
         document.getElementById('startButton').style.fontSize = height / 20 + 'px';
         document.getElementById('img').height = height / 1.4;
         document.getElementById('img').width = height / 1.4;
@@ -59,7 +70,7 @@ class HtmlCommunication {
 
     lostGame() {
         document.getElementById("score").innerHTML = 'Score:' + score;
-        document.getElementById("home").style.zIndex = 1;
+        document.getElementById("home").style.zIndex = 2;
     }
 
     replaceToStart() {
