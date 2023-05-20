@@ -11,20 +11,39 @@ class StoneManager {
     letStones() {
         for (let layer = stonelayerManager.stonelayers.length - 1; this.stones.length < stonelayerManager.stonelayers.length; layer++) {
             var thisLayer = stonelayerManager.stonelayers[layer];
-            this.points = [
-                [
-                    thisLayer.layerX + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerWidth,
-                    thisLayer.layerX + Helper.getRandomInt(87.3, 97.3) / 100 * thisLayer.layerWidth,
-                    thisLayer.layerX + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerWidth,
-                    thisLayer.layerX + Helper.getRandomInt(2.7, 12.7) / 100 * thisLayer.layerWidth
-                ],
-                [
-                    thisLayer.layerY + Helper.getRandomInt(5, 15) / 100 * thisLayer.layerHeight,
-                    thisLayer.layerY + Helper.getRandomInt(10, 20) / 100 * thisLayer.layerHeight,
-                    thisLayer.layerY + Helper.getRandomInt(85, 95) / 100 * thisLayer.layerHeight,
-                    thisLayer.layerY + Helper.getRandomInt(80, 90) / 100 * thisLayer.layerHeight
-                ]
-            ];
+            if (thisLayer.layerWidth < thisLayer.layerHeight) {
+                this.points = [
+                    [
+                        thisLayer.layerX + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerWidth,
+                        thisLayer.layerX + Helper.getRandomInt(87.3, 97.3) / 100 * thisLayer.layerWidth,
+                        thisLayer.layerX + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerWidth,
+                        thisLayer.layerX + Helper.getRandomInt(2.7, 12.7) / 100 * thisLayer.layerWidth
+                    ],
+                    [
+                        thisLayer.layerY + Helper.getRandomInt(5, 15) / 100 * thisLayer.layerHeight,
+                        thisLayer.layerY + Helper.getRandomInt(10, 20) / 100 * thisLayer.layerHeight,
+                        thisLayer.layerY + Helper.getRandomInt(85, 95) / 100 * thisLayer.layerHeight,
+                        thisLayer.layerY + Helper.getRandomInt(80, 90) / 100 * thisLayer.layerHeight
+                    ]
+                ];
+            }
+            else {
+                this.points = [
+                    [
+                        thisLayer.layerX + Helper.getRandomInt(85, 95) / 100 * thisLayer.layerWidth,
+                        thisLayer.layerX + Helper.getRandomInt(80, 90) / 100 * thisLayer.layerWidth,
+                        thisLayer.layerX + Helper.getRandomInt(5, 15) / 100 * thisLayer.layerWidth,
+                        thisLayer.layerX + Helper.getRandomInt(10, 20) / 100 * thisLayer.layerWidth
+                    ],
+                    [
+                        thisLayer.layerY + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerHeight,
+                        thisLayer.layerY + Helper.getRandomInt(87.3, 97.3) / 100 * thisLayer.layerHeight,
+                        thisLayer.layerY + Helper.getRandomInt(45, 55) / 100 * thisLayer.layerHeight,
+                        thisLayer.layerY + Helper.getRandomInt(2.7, 12.7) / 100 * thisLayer.layerHeight
+                    ]
+                ];
+            }
+
 
             var stone = new Stone();
             stone.stoneLayer = thisLayer;
@@ -51,7 +70,6 @@ class StoneManager {
             filteredStones = filteredStones.filter(stone => max(stone.points[1]) >= Y);
             filteredStones = filteredStones.filter(stone => min(stone.points[1]) <= Y);
             if (filteredStones.length > 0) {
-                play = false;
                 for (let point = 0; point < filteredStones[0].points[0].length; point++) {
                     var point1x = filteredStones[0].points[0][point];
                     var point1y = filteredStones[0].points[1][point];
@@ -75,12 +93,12 @@ class StoneManager {
                                     var stonePoint = point2y + littleWidth / stoneWidth * stoneHeight;
 
                                     if (point2x >= point1x) {
-                                        if (Y < stonePoint) {
-                                            play = true;
+                                        if (Y > stonePoint) {
+                                            play = false;
                                         }
                                     }
-                                    else if (Y > stonePoint) {
-                                        play = true;
+                                    else if (Y < stonePoint) {
+                                        play = false;
                                     }
                                 }
                             }

@@ -11,18 +11,52 @@ class HtmlCommunication {
         document.getElementById('startButton').addEventListener('click', function () {
             self.startGame();
         })
-        document.getElementById('playbuttonLeft').addEventListener('mousedown', function () {
+        document.getElementById('playbuttonLeft').addEventListener('touchstart', function () {
             skier.playbuttonLeft = true;
         })
-        document.getElementById('playbuttonLeft').addEventListener('click', function () {
+        document.getElementById('playbuttonLeft').addEventListener('touchend', function () {
             skier.playbuttonLeft = false;
         })
-        document.getElementById('playbuttonRight').addEventListener('mousedown', function () {
+        document.getElementById('playbuttonRight').addEventListener('touchstart', function () {
             skier.playbuttonRight = true;
         })
-        document.getElementById('playbuttonRight').addEventListener('click', function () {
+        document.getElementById('playbuttonRight').addEventListener('touchend', function () {
             skier.playbuttonRight = false;
         })
+        if (document.fullscreenElement == null) {
+            document.getElementById('fullscreenButton').addEventListener('click', function () {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+                screen.orientation.lock("landscape-primary")
+
+                if (displayHeight / displayWidth < skiGradient) {
+                    canvasWidthDisplacement = displayWidth - displayHeight / skiGradient;
+                }
+                else if (displayHeight / displayWidth > skiGradient) {
+                    canvasHeightDisplacement = displayHeight - displayWidth * skiGradient;
+                }
+
+                cnv = createCanvas(displayWidth - canvasWidthDisplacement, displayHeight - canvasHeightDisplacement);
+                cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
+
+                self.ResizeMenu();
+                document.getElementById('scoreField').style.display = 'none';
+                document.getElementById('startButtonContainer').style.display = 'flex';
+                document.getElementById("home").style.zIndex = 2;
+                play = false;
+                document.getElementById('fullscreenButton').style.display = 'none';
+            })
+        }
+        else {
+            document.getElementById('fullscreenButton').style.display = 'none';
+        }
     }
 
     ResizeMenu() {
@@ -88,6 +122,7 @@ class HtmlCommunication {
         firManager.firs = [];
         slalomManager.poles = [];
         slalomLines.counter = 0;
+        snowflakeManager.snowflakes = [];
         spawnSpeed = 2;
         score = 0;
         meters = 0;
@@ -97,7 +132,7 @@ class HtmlCommunication {
         play = true;
         chasmManager.letFirstChasm();
         firManager.letFirstFir();
-        for (let times = 0; times <= 20; times++) {
+        for (let times = 0; times <= 25; times++) {
             chasmManager.letChasm();
             firManager.letForest();
         }

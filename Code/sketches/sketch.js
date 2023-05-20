@@ -9,6 +9,7 @@ var stoneManager = new StoneManager();
 var slalomManager = new SlalomManager();
 var slalomLines = new SlalomLines();
 var firebaseManager = new FirebaseManager();
+var cnv;
 var play = false;
 var spawnSpeed = 2;
 var score = 0;
@@ -31,7 +32,7 @@ function setup() {
     canvasHeightDisplacement = windowHeight - windowWidth * skiGradient;
   }
 
-  let cnv = createCanvas(windowWidth - canvasWidthDisplacement, windowHeight - canvasHeightDisplacement);
+  cnv = createCanvas(windowWidth - canvasWidthDisplacement, windowHeight - canvasHeightDisplacement);
   cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
 
   htmlCommunication.initializeButtons();
@@ -50,7 +51,7 @@ function draw() {
   background(220);
   if (play == true) {
     if (transparence > 0) {
-      transparence -= 1;
+      transparence -= 2;
     }
 
     if (meters > 50) {

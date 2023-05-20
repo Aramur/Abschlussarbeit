@@ -31,13 +31,13 @@ class Skier {
 
     rotate(timeBetweenDraw) {
         if (this.rotateCounter >= 0.03 * timeBetweenDraw) {
-            if (keyIsDown(LEFT_ARROW) || this.playbuttonLeft == true) {
+            if (keyIsDown(DOWN_ARROW) || this.playbuttonLeft == true) {
                 if (skier.rotation <= 5) {
                     skier.rotation += 1;
                 }
 
             }
-            if (keyIsDown(RIGHT_ARROW) || this.playbuttonRight == true) {
+            if (keyIsDown(UP_ARROW) || this.playbuttonRight == true) {
                 if (skier.rotation >= -5) {
                     skier.rotation -= 1;
                 }

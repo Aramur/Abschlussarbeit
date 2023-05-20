@@ -3,13 +3,11 @@ class Stone {
     points = [];
 
     draw() {
-        var pointsToDraw = this.points;
-        fill(150)
+        fill(115)
         beginShape(TESS);
-        for (let length = 0; length < pointsToDraw[0].length; length++) {
-            vertex(pointsToDraw[0][length], pointsToDraw[1][length])
+        for (let length = 0; length < this.points[0].length; length++) {
+            vertex(this.points[0][length], this.points[1][length])
         }
-        endShape(CLOSE);
+        endShape();
     }
 }
-
