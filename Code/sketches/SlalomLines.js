@@ -7,7 +7,6 @@ class SlalomLines {
     counter = 0;
 
     calculateLine() {
-        console.log(this.counter)
         var pole = slalomManager.poles[this.counter];
         if (pole.type == 'blau') {
             this.x1 = pole.x + 104 / 640 * height / 4 + height;
@@ -51,9 +50,9 @@ class SlalomLines {
         }
         var a1 = (y21 - y11) / (x21 - x11);
         var b1 = y11 - (a1 * x11);
-        var testY = a1 * (skierHitbox.skierHitpoints[zeroOrTwo].x) + b1;
+        var testY = a1 * (skierHitbox.skierHitpoints[oneOrThree].x) + b1;
 
-        if (skierHitbox.skierHitpoints[zeroOrTwo].y >= testY) {
+        if (skierHitbox.skierHitpoints[oneOrThree].y >= testY) {
             if (pole.type !== 'rot') {
                 var x12 = skierHitbox.skierHitpoints[0].x
                 var y12 = skierHitbox.skierHitpoints[0].y;
@@ -96,7 +95,7 @@ class SlalomLines {
             }
         }
         testY = a1 * (skierHitbox.skierHitpoints[oneOrThree].x) + b1;
-        if (skierHitbox.skierHitpoints[oneOrThree].y >= testY && pole.type !== 'ziel' && modus == 'slalom') {
+        if (skierHitbox.skierHitpoints[zeroOrTwo].y >= testY && pole.type !== 'ziel' && modus == 'slalom') {
             this.counter += 1
         }
         else if (skierHitbox.skierHitpoints[oneOrThree].y >= testY && pole.type == 'ziel' && modus == 'slalom') {

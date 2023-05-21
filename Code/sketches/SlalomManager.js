@@ -4,7 +4,7 @@ class SlalomManager {
     letPoles() {
         if (this.poles.length == 0) {
             var pole = new Slalom();
-            pole.x = width + height / 4;
+            pole.x = width + height / 10;
             pole.y = Helper.getRandomInt(Helper.getYBoarderTop(width + height / 4) + height / 12, Helper.getYBoarderBottom(width + height / 4, 0) - height / 2);
             pole.type = 'start';
 
