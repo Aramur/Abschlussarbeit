@@ -74,7 +74,6 @@ function draw() {
     if (modus == 'stones') {
       stonelayerManager.letStonelayers(timeBetweenDraw);
       stoneManager.letStones();
-
       meters++;
     }
 

@@ -27,7 +27,7 @@ class StonelayerManager {
                 this.layerWidth = width / size;
                 this.layerHeight = height / size * 2;
             }
-            this.layerX = width + height / 10;
+            this.layerX = width + height / 4;
 
             var filteredChasms = chasmManager.chasms.filter(chasm => chasm.x2 >= this.layerX);
             filteredChasms = filteredChasms.filter(chasm => chasm.x1 <= this.layerX);
@@ -71,7 +71,7 @@ class StonelayerManager {
 
             var firLine = 0;
             for (let fir = 0; fir < filteredForest.length; fir++) {
-                if (filteredForest[fir].y + height / 16 >= firLine) {
+                if (filteredForest[fir].y + height / 8 >= firLine) {
                     firLine = filteredForest[fir].y + 300 / 2560 * height;
                 }
             }

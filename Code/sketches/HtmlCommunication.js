@@ -23,44 +23,40 @@ class HtmlCommunication {
         document.getElementById('playbuttonRight').addEventListener('touchend', function () {
             skier.playbuttonRight = false;
         })
-        document.getElementById('fullscreenButton').addEventListener('click', function () {
-            var element = document.documentElement;
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) {
-                if (element.webkitRequestFullscreenWithKeys) {
-                    element.webkitRequestFullscreenWithKeys();
-                } else {
-                    element.webkitRequestFullscreen();
+        if (document.fullscreenElement == null) {
+            document.getElementById('fullscreenButton').addEventListener('click', function () {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
                 }
-            } else if (element.msRequestFullscreen) {
-                element.msRequestFullscreen();
-            }
+                screen.orientation.lock("landscape-primary")
 
-            screen.orientation.lock("landscape-primary")
+                if (displayHeight / displayWidth < skiGradient) {
+                    canvasWidthDisplacement = displayWidth - displayHeight / skiGradient;
+                }
+                else if (displayHeight / displayWidth > skiGradient) {
+                    canvasHeightDisplacement = displayHeight - displayWidth * skiGradient;
+                }
 
-            var dh = min(displayHeight, displayWidth);
-            var dw = max(displayHeight, displayWidth);
-            if (dh / dw < skiGradient) {
-                canvasWidthDisplacement = dw - dh / skiGradient;
-            }
-            else if (dh / dw > skiGradient) {
-                canvasHeightDisplacement = dh - dw * skiGradient;
-            }
+                cnv = createCanvas(displayWidth - canvasWidthDisplacement, displayHeight - canvasHeightDisplacement);
+                cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
 
-            cnv = createCanvas(dw - canvasWidthDisplacement, dh - canvasHeightDisplacement);
-            cnv.position(canvasWidthDisplacement / 2, canvasHeightDisplacement / 2)
-
-            self.ResizeMenu();
-            document.getElementById('scoreField').style.display = 'none';
-            document.getElementById('startButtonContainer').style.display = 'flex';
-            document.getElementById("home").style.zIndex = 2;
-            play = false;
-            snowflakeManager.snowflakes = [];
+                self.ResizeMenu();
+                document.getElementById('scoreField').style.display = 'none';
+                document.getElementById('startButtonContainer').style.display = 'flex';
+                document.getElementById("home").style.zIndex = 2;
+                play = false;
+                document.getElementById('fullscreenButton').style.display = 'none';
+            })
+        }
+        else {
             document.getElementById('fullscreenButton').style.display = 'none';
-        })
+        }
     }
 
     ResizeMenu() {

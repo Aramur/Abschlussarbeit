@@ -28,7 +28,7 @@ class FirManager {
         for (let row = 0; row <= this.rows; row++) {
             var id = this.firs[row].length - 1;
 
-            if (this.firs[row][id].y < height + height / 2) {
+            if (this.firs[row][id].y < height + 1000) {
                 var x = this.firs[row][id].x + Helper.getRandomInt(height / 12, height / 7);
                 var y = this.firs[row][id].y + Helper.getRandomInt(height / 18, height / 10.5);
 
@@ -45,7 +45,7 @@ class FirManager {
                 fir.y = y;
                 fir.delete = false;
 
-                this.firs[row] = this.firs[row].filter(fir => fir.x >= - height / 3);
+                this.firs[row] = this.firs[row].filter(fir => fir.x >= - 300);
 
                 this.firs[row].push(fir);
             }

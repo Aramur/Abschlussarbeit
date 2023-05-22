@@ -59,17 +59,17 @@ class FirebaseManager {
             }
         }
         var list = this.getHighestScores(highscores);
-        var actualDay = Math.floor((Date.now() + 3600000) / 86400000) * 86400000;
         htmlCommunication.fillIntoList(list, "table0")
-        var monthlyHighscores = highscores.filter(highscore => highscore.key >= actualDay - 86400000 * new Date().getUTCDate())
-        var list = this.getHighestScores(monthlyHighscores);
+        highscores = highscores.filter(highscore => highscore.key >= Date.now() - 2678400000)
+        var list = this.getHighestScores(highscores);
         htmlCommunication.fillIntoList(list, "table1")
-        highscores = highscores.filter(highscore => highscore.key >= actualDay - 86400000 * new Date().getDay())
+        highscores = highscores.filter(highscore => highscore.key >= Date.now() - 604800000)
         var list = this.getHighestScores(highscores);
         htmlCommunication.fillIntoList(list, "table2")
-        highscores = highscores.filter(highscore => highscore.key >= actualDay)
+        highscores = highscores.filter(highscore => highscore.key >= Date.now() - 86400000)
         var list = this.getHighestScores(highscores);
         htmlCommunication.fillIntoList(list, 'table3')
+
     }
 
     getHighestScores(highscores) {
