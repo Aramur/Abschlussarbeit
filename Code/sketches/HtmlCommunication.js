@@ -127,7 +127,7 @@ class HtmlCommunication {
         slalomManager.poles = [];
         slalomLines.counter = 0;
         snowflakeManager.snowflakes = [];
-        spawnSpeed = 2;
+        spawnSpeed = 2.4;
         score = 0;
         meters = 0;
         modus = 'stones';

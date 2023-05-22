@@ -126,6 +126,6 @@ class SlalomLines {
         this.counter = 0;
         slalomManager.poles = [];
         meters++;
-        spawnSpeed -= 0.1
+        spawnSpeed -= 0.2
     }
 }
