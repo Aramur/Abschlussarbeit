@@ -20,7 +20,7 @@ class ChasmManager {
     }
 
     letChasm() {
-        if (this.chasms[this.chasms.length - 1].y2 < width + 200) {
+        if (this.chasms[this.chasms.length - 1].y2 < width + height / 4) {
             var x1 = this.chasms[this.chasms.length - 1].x2;
             var y1 = this.chasms[this.chasms.length - 1].y2;
             var x2 = x1 + Helper.getRandomInt(height / 12, height / 7);
