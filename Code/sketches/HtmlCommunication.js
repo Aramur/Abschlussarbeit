@@ -32,6 +32,8 @@ class HtmlCommunication {
             } else if (element.webkitRequestFullscreen) {
                 if (element.webkitRequestFullscreenWithKeys) {
                     element.webkitRequestFullscreenWithKeys();
+                } else if (element.webkitEnterFullscreen) {
+                    element.webkitEnterFullscreen();
                 } else {
                     element.webkitRequestFullscreen();
                 }
