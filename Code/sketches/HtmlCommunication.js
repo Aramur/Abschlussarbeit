@@ -109,7 +109,7 @@ class HtmlCommunication {
     }
 
     lostGame() {
-        document.getElementById("score").innerHTML = 'Score:' + score;
+        document.getElementById("score").innerHTML = 'Score:' + heigth;
         document.getElementById("home").style.zIndex = 2;
     }
 
@@ -130,7 +130,7 @@ class HtmlCommunication {
         slalomLines.counter = 0;
         snowflakeManager.snowflakes = [];
         spawnSpeed = 2.4;
-        score = 0;
+        heigth = 0;
         meters = 0;
         modus = 'stones';
         won = false;

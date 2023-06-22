@@ -51,8 +51,8 @@ class StoneManager {
 
             this.stones.push(stone);
         }
+        stonelayerManager.stonelayers = stonelayerManager.stonelayers.filter(stone => stone.layerY >= - height / 4);
         this.stones = this.stones.filter(stone => stone.stoneLayer.layerY >= - height / 4);
-
     }
 
     moveStones(timeBetweenDraw) {

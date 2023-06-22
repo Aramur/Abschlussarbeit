@@ -24,7 +24,7 @@ class FirebaseManager {
         var name = document.getElementById('name').value
         var time = Date.now()
         this.database.ref('highscores/' + time).set({
-            score: score,
+            score: heigth,
             name: name,
         })
     }

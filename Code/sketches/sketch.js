@@ -12,7 +12,7 @@ var firebaseManager = new FirebaseManager();
 var cnv;
 var play = false;
 var spawnSpeed;
-var score;
+var heigth;
 var meters;
 var modus;
 var won = false;
@@ -90,7 +90,7 @@ function draw() {
     stonelayerManager.moveStoneLayers(timeBetweenDraw);
     stoneManager.moveStones(timeBetweenDraw);
     slalomManager.movePoles(timeBetweenDraw);
-    score += 1;
+    heigth += 1;
   }
 
   slalomLines.drawLine();
@@ -103,7 +103,7 @@ function draw() {
 
   fill(255);
   textSize(height / 20)
-  text(score, width * 9 / 10, height / 10);
+  text(heigth, width * 9 / 10, height / 10);
   if (won == true) {
     text('+500', width * 9 / 10, height / 6);
     wonCounter++;

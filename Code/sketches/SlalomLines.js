@@ -99,7 +99,7 @@ class SlalomLines {
             this.counter += 1
         }
         else if (skierHitbox.skierHitpoints[oneOrThree].y >= testY && pole.type == 'ziel' && modus == 'slalom') {
-            score += 500;
+            heigth += 500;
             this.slalomEnd()
             won = true
         }

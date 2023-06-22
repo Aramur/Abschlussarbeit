@@ -50,7 +50,7 @@ class ChasmManager {
     }
 
     getColor(y1, x1, y2, x2) {
-        var gradient = (y1 - y2) / (x2 - x1) * 35 + 50;
+        var gradient = (y1 - y2) / (x2 - x1) * 40 + 70;
         return gradient, gradient, gradient;
     }
 
